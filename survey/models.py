@@ -22,7 +22,6 @@ QTYPE_CHOICES = (
     ('i5', _('Integer Input (5 digits)')),
     ('S', _('Select One Choice')),
     ('R', _('Radio List')),
-    ('I', _('Radio Image List')),
     ('C', _('Checkbox List'))
 )
 class SurveyManager(models.Manager):
@@ -174,11 +173,7 @@ class Question(models.Model):
     text     = models.TextField(_('question text'))
     order = models.IntegerField(verbose_name = _("order"),
                                 null=True, blank=True)
-    # TODO: Add a button or check box to remove the file. There are several
-    # recipes floating on internet. I like the one with a custom widget
-    image = models.ImageField(verbose_name=_("image"),
-                              upload_to= "survey/images/questions" + "/%Y/%m/%d/",
-                              null=True, blank= True)
+    
     # Define if the user must select at least 'choice_num_min' number of
     # choices and at most 'choice_num_max'
     choice_num_min = models.IntegerField(_("minimum number of choices"),
@@ -242,11 +237,6 @@ class Choice(models.Model):
     question = models.ForeignKey(Question, related_name='choices',
                                  verbose_name=_('question'))
     text = models.CharField(_('choice text'), max_length=500)
-    # TODO: Add a button or check box to remove the file. There are several
-    # recipes floating on internet. I like the one with a custom widget
-    image = models.ImageField(verbose_name = _("image"),
-                              upload_to= "survey/images/questions" + "/%Y/%m/%d/",
-                              null=True ,blank= True)
 
     order = models.IntegerField(verbose_name = _("order"),
                                 null=True, blank=True)

@@ -3,7 +3,7 @@ from django.conf import settings
 from django.forms import BaseForm, Form, ValidationError
 from django.forms import CharField, IntegerField, ChoiceField, SplitDateTimeField,\
                             CheckboxInput, BooleanField,FileInput,\
-                            FileField, ImageField
+                            FileField
 from django.forms import Textarea, TextInput, Select, RadioSelect,\
                             CheckboxSelectMultiple, MultipleChoiceField,\
                             SplitDateTimeWidget,MultiWidget, MultiValueField
@@ -138,10 +138,7 @@ class ChoiceAnswer(BaseAnswerForm):
         choices_dict = {}
         self.initial_answer = None
         for opt in self.question.choices.all().order_by("order"):
-            if opt.image and opt.image.url:
-                text = mark_safe(opt.text + '<br/><img src="%s"/>'%opt.image.url)
-            else:
-                text = opt.text
+            text = opt.text
             if self.answer is not None and self.answer.text == opt.text:
                 self.initial_answer = str(opt.id)
             choices.append((str(opt.id),text))
@@ -163,13 +160,6 @@ class ChoiceRadio(ChoiceAnswer):
         super(ChoiceRadio, self).__init__(*args, **kwdargs)
         self.fields['answer'].widget = RadioSelect(choices=self.choices)
 
-class ChoiceImage(ChoiceAnswer):
-    def __init__(self, *args, **kwdargs):
-        super(ChoiceImage, self).__init__(*args, **kwdargs)
-        #import pdb; pdb.set_trace()
-        self.choices = [ (k,mark_safe(v)) for k,v in self.choices ]
-        self.fields['answer'].widget = RadioSelect(choices=self.choices)
-
 class ChoiceCheckbox(BaseAnswerForm):
     answer = MultipleChoiceField(widget=CheckboxSelectMultiple)
 
@@ -180,8 +170,6 @@ class ChoiceCheckbox(BaseAnswerForm):
         self.initial_answer = None
         for opt in self.question.choices.all().order_by("order"):
             text = opt.text
-            if opt.image and opt.image.url:
-                text = mark_safe(opt.text + '<br />' + opt.image.url)
             choices.append((str(opt.id),text))
             choices_dict[str(opt.id)] = opt.text
             if self.answer is not None and self.answer.text == opt.text:
@@ -227,7 +215,6 @@ QTYPE_FORM = {
     'i5': IntegerAnswer,
     'S': ChoiceAnswer,
     'R': ChoiceRadio,
-    'I': ChoiceImage,
     'C': ChoiceCheckbox,
 }
 
