@@ -149,24 +149,26 @@ def survey_add(request,
     if request.method == "POST":
         request_post = request.POST.copy()
         survey_form = SurveyForm(request_post)
+        
         if survey_form.is_valid():
             new_survey = survey_form.save(commit=False)
             new_survey.created_by =  request.user
             new_survey.editable_by = request.user
             new_survey.slug = slugify(new_survey.title)
+            
             if group_slug:
                 group = get_object_or_404(group_qs,slug=group_slug)
                 new_survey.recipient = group
             new_survey.save()
+            
             return HttpResponseRedirect(reverse("surveys-editable",kwargs={}))
-
-
+        
     else:
         survey_form = SurveyForm()
+        
     return render_to_response(template_name,
-                              {'title': _("Add a survey"),
-                               'form' : survey_form},
-                              context_instance=RequestContext(request))
+            {'title': _("Add a survey"), 'form' : survey_form},
+            context_instance = RequestContext(request))
 
 @login_required()
 def survey_update(request, survey_slug,

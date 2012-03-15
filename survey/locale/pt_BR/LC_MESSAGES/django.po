@@ -76,7 +76,7 @@ msgstr "Entrada para número inteiros (5 dígitos)"
 
 #: models.py:23
 msgid "Select One Choice"
-msgstr "Selecione uma opção"
+msgstr "Seleção de opção"
 
 #: models.py:24
 msgid "Radio List"
@@ -127,7 +127,7 @@ msgstr "Os resultados da pesquisa são públicos"
 
 #: models.py:50
 msgid "restrict the survey to authentified user"
-msgstr "restrigir a usuários autenticados"
+msgstr "restringir a usuários autenticados"
 
 #: models.py:52
 msgid "allows multiple interviews"
@@ -158,11 +158,11 @@ msgstr "abre "
 
 #: models.py:107
 msgid "closed"
-msgstr ""
+msgstr "fechado"
 
 #: models.py:169
 msgid "survey"
-msgstr "fechado"
+msgstr "Pesquisa"
 
 #: models.py:170
 msgid "question type"
