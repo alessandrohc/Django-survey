@@ -9,6 +9,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Admin
     url(r'^admin/', include(admin.site.urls)),
+    (r'^grappelli/', include('grappelli.urls')),
+    
     #
     (r'survey/', include('survey.urls')),
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
