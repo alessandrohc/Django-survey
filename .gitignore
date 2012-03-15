@@ -10,3 +10,4 @@ Django-survey.egg-info
 docs/_build
 dist
 build/
+/examples.db
