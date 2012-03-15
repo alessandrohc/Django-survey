@@ -33,7 +33,7 @@ msgid "Date:"
 msgstr "Fecha:"
 
 #: forms.py:220
-msgid "Time:"
+msgid "Time:"fr
 msgstr "Hora:"
 
 #: forms.py:234 forms.py:237

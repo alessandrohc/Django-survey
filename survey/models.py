@@ -12,37 +12,35 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
-
-
 QTYPE_CHOICES = (
-    ('T', 'Text Input'),
-    ('A', 'Text Area'),
-    ('i', 'Integer Input'),
-    ('i2', 'Integer Input (2 digits)'),
-    ('i3', 'Integer Input (3 digits)'),
-    ('i4', 'Integer Input (4 digits)'),
-    ('i5', 'Integer Input (5 digits)'),
-    ('S', 'Select One Choice'),
-    ('R', 'Radio List'),
-    ('I', 'Radio Image List'),
-    ('C', 'Checkbox List')
+    ('T', _('Text Input')),
+    ('A', _('Text Area')),
+    ('i', _('Integer Input')),
+    ('i2', _('Integer Input (2 digits)')),
+    ('i3', _('Integer Input (3 digits)')),
+    ('i4', _('Integer Input (4 digits)')),
+    ('i5', _('Integer Input (5 digits)')),
+    ('S', _('Select One Choice')),
+    ('R', _('Radio List')),
+    ('I', _('Radio Image List')),
+    ('C', _('Checkbox List'))
 )
-
 class SurveyManager(models.Manager):
 
     def surveys_for(self, recipient):
         recipient_type = ContentType.objects.get_for_model(recipient)
         return Survey.objects.filter(visible=True,recipient_type=recipient_type, recipient_id=recipient.id)
 
-
 class Survey(models.Model):
-
-    title   = models.CharField(_('survey title'), max_length=255)
-    slug    = models.SlugField(_('slug'), max_length=255, unique=True)
-    description= models.TextField(verbose_name=_("description"),
-                            help_text=_("This field appears on the public web site and should give an overview to the interviewee"),
-                            blank=True)
-
+    
+    title = models.CharField(_('survey title'), max_length=255)
+    slug  = models.SlugField(_('slug'), max_length=255, unique=True)
+    
+    description= models.TextField(
+        verbose_name=_("description"),
+        help_text=_("This field appears on the public web site and should give an overview to the interviewee"),
+        blank=True
+    )
     ## Add validation on datetimes
     opens   = models.DateTimeField(_('survey starts accepting submissions on'))
     closes  = models.DateTimeField(_('survey stops accepting submissions on'))
@@ -53,10 +51,10 @@ class Survey(models.Model):
                                      ,blank=True,default=False)
     allows_multiple_interviews = models.BooleanField(verbose_name=_("allows multiple interviews")
                                                      ,blank=True,default=True)
-    template_name = models.CharField(_('template name'),max_length=150,
-                                     null=True, blank=True,
+    template_name = models.CharField(_('template name'), 
+        max_length=150, null=True, blank=True,
         help_text=_("This field is used to define a custom template (Example: 'dj_survey/template/my_add_interview_forms.html')."))
-
+    
     # Control who can edit the survey
     # TODO: Plug this control in the view used to edit the survey
     created_by = models.ForeignKey(User, related_name="created_surveys")

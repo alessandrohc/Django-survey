@@ -1,1 +1,1 @@
-django-admin.py makemessages -d djangojs -a -e ".js" -l fr -s
+django-admin.py makemessages -d djangojs -a -e ".js" -l pt-BR -s
