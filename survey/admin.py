@@ -1,3 +1,4 @@
+# -*- coding: latin-1 -*-
 from survey.models import Answer, Choice, Question, Survey
 from django.contrib import admin
 
@@ -17,8 +18,22 @@ class QuestionOptions(admin.ModelAdmin):
     list_select_related = True
     list_filter = ('survey', 'qtype')
     list_display_links = ('text',)
-    list_display = ('survey', 'text', 'qtype', 'required')
+    
+    list_display = (
+        'survey', 
+        'text', 
+        'qtype', 
+        'required'
+    )
+    # exclui a exibição dos seguintes campos.
+    exclude = (
+        'choice_num_min', 
+        'choice_num_max', 
+        'qstyle', 
+        'order'
+    )
     search_fields = ('text',)
+    
     inlines = [
         ChoiceInline,
         ]
