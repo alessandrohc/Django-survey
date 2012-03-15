@@ -10,7 +10,6 @@ class ChoiceInline(admin.TabularInline):
     fields = ('text', 'order',)
     template = 'admin/survey/choice/edit_inline_tabular.html'
 
-
 class QuestionOptions(admin.ModelAdmin):
     """
     A newforms-admin options class for the ``Question`` model.
@@ -37,17 +36,36 @@ class SurveyOptions(admin.ModelAdmin):
     """
     A newforms-admin options class for the ``Survey`` model.
     """
-    prepopulated_fields = {'slug': ('title',)}
-    list_display = ('__unicode__', 'visible', 'public',
-                        'opens', 'closes', 'open')
-    inlines = [QuestionInline]
+    fields = (
+        'title', 
+        'description',
+        'opens',
+        'closes',
+        'visible',
+        'public',
+        'restricted'
+    )
+    #prepopulated_fields = {'slug': ('title',)}
+    #list_display = (
+        #'__unicode__', 
+        #'visible', 
+        #'public',
+        #'opens', 
+        #'closes', 
+        #'open'
+    #)
+    #inlines = [QuestionInline]
 
 class AnswerOptions(admin.ModelAdmin):
     """
     A newforms-admin options class for the ``Answer`` model.
     """
-    list_display = ('interview_uuid','question','user', 'submission_date',
-                    'session_key', 'text')
+    list_display = (
+        'interview_uuid',
+        'question', 'user', 
+        'submission_date',
+        'session_key', 'text'
+    )
     #list_filter = ('question__survey',)
     search_fields = ('text',)
     list_select_related=True
@@ -56,7 +74,6 @@ class ChoiceOptions(admin.ModelAdmin):
     list_display = ('question','text',)
     search_fields = ('text',)
     list_filter = ('question',)
-
 
 # The try/catch blocks are there to supress the ``AlreadyRegistered`` warning.
 try:
