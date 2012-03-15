@@ -463,24 +463,6 @@ def answers_detail(request, survey_slug, key,
          'title': survey.title},
         context_instance=RequestContext(request))
 
-def delete_image(request, model_string,object_id):
-    model = models.get_model("survey", model_string)
-    object = get_object_or_404(model, id=object_id)
-    if object.image == None:
-        raise Http404('No image for the given object : %s ' %object)
-    if request.method == "POST":
-        request_post = request.POST.copy()
-        if os.path.isfile(object.get_image_filename()):
-            os.remove(object.get_image_filename())
-            object.image = None
-            object.save()
-            return HttpResponseRedirect(object.get_update_url())
-
-    return render_to_response('survey/image_confirm_delete.html',
-        {"object" : object},
-        context_instance=RequestContext(request))
-
-
 @login_required
 def ajax(request, template_name='survey/ajax.html'):
     return render_to_response(template_name, {

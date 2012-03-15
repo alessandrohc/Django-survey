@@ -121,7 +121,6 @@ class ExtJSONEncoder(DjangoJSONEncoder):
         fields.SplitDateTimeField: ["Ext.form.DateField", DATE_EDITOR],
         fields.TimeField: ["Ext.form.DateField", TIME_EDITOR],
         fields.URLField: ["Ext.form.TextField", URL_EDITOR],
-        fields.ImageField: ["Ext.ux.form.FileUploadField", FILE_EDITOR],
         fields.FileField: ["Ext.ux.form.FileUploadField", FILE_EDITOR]
     }
 
