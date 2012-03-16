@@ -8,276 +8,321 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-15 09:53-0300\n"
+"POT-Creation-Date: 2012-03-16 11:07-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
-#: forms.py:46
+#: dashboard.py:28
+msgid "AppList: Applications"
+msgstr "Aplicações"
+
+#: dashboard.py:35
+msgid "Administration"
+msgstr "Administração"
+
+#: dashboard.py:44
+msgid "ModelList: Administration"
+msgstr "Administração"
+
+#: survey/forms.py:46
 msgid "this question is optional"
 msgstr "Essa pergunta é opcional."
 
-#: forms.py:68 forms.py:158 forms.py:200 forms.py:208
+#: survey/forms.py:68 survey/forms.py:155 survey/forms.py:188
+#: survey/forms.py:197
 msgid "This field is required."
 msgstr "Esse campo é obrigatório."
 
-#: forms.py:106
+#: survey/forms.py:106
 #, python-format
 msgid "Please enter a %s or less digits number."
 msgstr "Por favor entre %s ou menos número de dígitos."
 
-#: forms.py:203
+#: survey/forms.py:191
 msgid "Invalid Choice."
 msgstr "Escolha inválida."
 
-#: forms.py:282
+#: survey/forms.py:270
 msgid "Date:"
 msgstr "Data:"
 
-#: forms.py:282
+#: survey/forms.py:270
 msgid "Time:"
 msgstr "Tempo:"
 
-#: forms.py:296 forms.py:299
+#: survey/forms.py:290 survey/forms.py:294
 msgid "The title of the survey must be unique."
 msgstr "O título da pesquisa precisa ser único."
 
-#: models.py:16
+#: survey/models.py:16
 msgid "Text Input"
 msgstr "Entrada de texto"
 
-#: models.py:17
+#: survey/models.py:17
 msgid "Text Area"
 msgstr "Área de texto"
 
-#: models.py:18
+#: survey/models.py:18
 msgid "Integer Input"
 msgstr "Entrada para número inteiros"
 
-#: models.py:19
+#: survey/models.py:19
 msgid "Integer Input (2 digits)"
 msgstr "Entrada para número inteiros (2 dígitos)"
 
-#: models.py:20
+#: survey/models.py:20
 msgid "Integer Input (3 digits)"
 msgstr "Entrada para número inteiros (3 dígitos)"
 
-#: models.py:21
+#: survey/models.py:21
 msgid "Integer Input (4 digits)"
 msgstr "Entrada para número inteiros (4 dígitos)"
 
-#: models.py:22
+#: survey/models.py:22
 msgid "Integer Input (5 digits)"
 msgstr "Entrada para número inteiros (5 dígitos)"
 
-#: models.py:23
+#: survey/models.py:23
 msgid "Select One Choice"
 msgstr "Seleção de opção"
 
-#: models.py:24
+#: survey/models.py:24
 msgid "Radio List"
 msgstr "Lista Radio"
 
-#: models.py:25
-msgid "Radio Image List"
-msgstr "Lista Imagem Radio"
-
-#: models.py:26
+#: survey/models.py:25
 msgid "Checkbox List"
 msgstr "Lista Checkbox"
 
-#: models.py:36
+#: survey/models.py:35
 msgid "survey title"
 msgstr "Título da pesquisa"
 
-#: models.py:37
+#: survey/models.py:36
 msgid "slug"
 msgstr "slug"
 
-#: models.py:40
+#: survey/models.py:39
 msgid "description"
 msgstr "Descrição"
 
-#: models.py:41
+#: survey/models.py:40
 msgid ""
 "This field appears on the public web site and should give an overview to the "
 "interviewee"
-msgstr "Esse campo aparece sobre o site web público e "
-"deve dar um avaliação aos entrevistados"
+msgstr ""
+"Esse campo aparece sobre o site web público e deve dar um avaliação aos "
+"entrevistados"
 
-#: models.py:45
+#: survey/models.py:44
 msgid "survey starts accepting submissions on"
 msgstr "A pesquisa começa apartir da data"
 
-#: models.py:46
+#: survey/models.py:45
 msgid "survey stops accepting submissions on"
 msgstr "A pesquisa termina nessa data"
 
-#: models.py:48
+#: survey/models.py:47
 msgid "survey is visible"
 msgstr "A pesquisa está visível"
 
-#: models.py:49
+#: survey/models.py:48
 msgid "survey results are public"
 msgstr "Os resultados da pesquisa são públicos"
 
-#: models.py:50
+#: survey/models.py:49
 msgid "restrict the survey to authentified user"
 msgstr "restringir a usuários autenticados"
 
-#: models.py:52
+#: survey/models.py:51
 msgid "allows multiple interviews"
 msgstr "permitir múltiplas entrevistas"
 
-#: models.py:54
+#: survey/models.py:53
 msgid "template name"
 msgstr "nome do template"
 
-#: models.py:56
+#: survey/models.py:55
 msgid ""
 "This field is used to define a custom template (Example: 'dj_survey/template/"
 "my_add_interview_forms.html')."
-msgstr "Esse campo deve ser usado para definir um template personalizado(Exemplo: 'dj_survey/template/"
-"my_add_interview_forms.html')."
+msgstr ""
+"Esse campo deve ser usado para definir um template personalizado(Exemplo: "
+"'dj_survey/template/my_add_interview_forms.html')."
 
-#: models.py:103
+#: survey/models.py:102
 msgid "private"
 msgstr "privado"
 
-#: models.py:104
+#: survey/models.py:103
 msgid "open"
 msgstr "aberto"
 
-#: models.py:106
+#: survey/models.py:105
 msgid "opens "
 msgstr "abre "
 
-#: models.py:107
+#: survey/models.py:106
 msgid "closed"
 msgstr "fechado"
 
-#: models.py:169
-msgid "survey"
+#: survey/models.py:166
+#, fuzzy
+msgid "Survey"
 msgstr "Pesquisa"
 
-#: models.py:170
+#: survey/models.py:167 survey/views.py:389 survey/views.py:409
+msgid "Surveys"
+msgstr "Pesquisas"
+
+#: survey/models.py:171
+msgid "survey"
+msgstr "pesquisa"
+
+#: survey/models.py:172
 msgid "question type"
 msgstr "tipo de pergunta"
 
-#: models.py:173
+#: survey/models.py:175
 msgid "required"
 msgstr "obrigatório"
 
-#: models.py:174
+#: survey/models.py:176
 msgid "question text"
 msgstr "texto da pergunta"
 
-#: models.py:175 models.py:251
+#: survey/models.py:177 survey/models.py:246
 msgid "order"
 msgstr "ordem"
 
-#: models.py:179 models.py:247
-msgid "image"
-msgstr "imagem"
-
-#: models.py:184
+#: survey/models.py:182
 msgid "minimum number of choices"
 msgstr "número minimo de opções"
 
-#: models.py:186
+#: survey/models.py:184
 msgid "maximum number of choices"
 msgstr "número máximo de opções"
 
-#: models.py:190
+#: survey/models.py:188
 msgid "Html Style"
 msgstr "Estilo Html"
 
-#: models.py:243 models.py:279
+#: survey/models.py:221
+#, fuzzy
+msgid "Question"
+msgstr "Pergunta"
+
+#: survey/models.py:222
+#, fuzzy
+msgid "Questions"
+msgstr "Perguntas"
+
+#: survey/models.py:243 survey/models.py:276
 msgid "question"
 msgstr "pergunta"
 
-#: models.py:244
+#: survey/models.py:244
 msgid "choice text"
 msgstr "texto da opção"
 
-#: models.py:276
+#: survey/models.py:268
+msgid "Choice"
+msgstr "Opção"
+
+#: survey/models.py:269
+msgid "Choices"
+msgstr "Opções"
+
+#: survey/models.py:273
 msgid "user"
 msgstr "usuário"
 
-#: models.py:282
+#: survey/models.py:279
 msgid "session key"
 msgstr "chave de sessão"
 
-#: models.py:283
+#: survey/models.py:280
 msgid "answer text"
 msgstr "texto da resposta"
 
-#: models.py:286
+#: survey/models.py:283
 msgid "Interview unique identifier"
 msgstr "Indentificador único da entrevista"
 
-#: views.py:66
+#: survey/models.py:290
+msgid "Answer"
+msgstr "Resposta"
+
+#: survey/models.py:291
+msgid "Answers"
+msgstr "Respostas"
+
+#: survey/views.py:66
 msgid "Thank You"
 msgstr "Muito obrigado"
 
-#: views.py:97
+#: survey/views.py:97
 msgid "Cookies must be enabled."
 msgstr "Cookies precisam estar ativados"
 
-#: views.py:167
+#: survey/views.py:170
 msgid "Add a survey"
 msgstr "Adicione uma nova pesquisa"
 
-#: views.py:194
+#: survey/views.py:196
 #, python-format
 msgid "Update '%s'"
 msgstr "Atualize '%s'"
 
-#: views.py:215
+#: survey/views.py:217
 msgid "Delete survey"
 msgstr "Deletar pesquisa"
 
-#: views.py:239
+#: survey/views.py:241
 msgid "Add a question"
 msgstr "Adicionar uma pergunta"
 
-#: views.py:270
+#: survey/views.py:272
 msgid "Update question"
 msgstr "Atualizar pergunta"
 
-#: views.py:293
+#: survey/views.py:295
 msgid "Delete question"
 msgstr "Deletar pergunta"
 
-#: views.py:318
+#: survey/views.py:320
 msgid "Add a choice"
-msgstr "Acionar um opção"
+msgstr "Adicionar uma opção"
 
-#: views.py:346
+#: survey/views.py:348
 msgid "Update choice"
-msgstr "Atualizar opção"
+msgstr "Atualizar uma opção"
 
-#: views.py:369
+#: survey/views.py:371
 msgid "Delete choice"
-msgstr "Deletar opção"
+msgstr "Deletar uma opção"
 
-#: views.py:387 views.py:407
-msgid "Surveys"
-msgstr "Pesquisas"
-
-#: views.py:430 views.py:460
+#: survey/views.py:432 survey/views.py:462
 msgid "Insufficient Privileges."
 msgstr "Previlégios insuficientes."
 
-#: views.py:434
+#: survey/views.py:436
 msgid "Results"
 msgstr "Resultados"
 
-#: extjs/__init__.py:21
+#: survey/extjs/__init__.py:21
 #, python-format
 msgid "The form %s has already been registered."
 msgstr "O fomulário %s já foi registrado."
+
+#~ msgid "Radio Image List"
+#~ msgstr "Lista Imagem Radio"
+
+#~ msgid "image"
+#~ msgstr "imagem"
