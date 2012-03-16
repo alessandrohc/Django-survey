@@ -30,7 +30,7 @@ class SurveyManager(models.Manager):
 class Survey(models.Model):
     
     title = models.CharField(_('title'), max_length=255)
-    slug  = models.SlugField(_('slug'), max_length=255, unique=True)
+    slug  = models.SlugField(_('slug'), max_length=255, blank=True)
     
     description= models.TextField(
         verbose_name=_("description"),
