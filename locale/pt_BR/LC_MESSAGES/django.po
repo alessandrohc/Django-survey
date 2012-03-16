@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-16 11:15-0300\n"
+"POT-Creation-Date: 2012-03-16 11:46-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,71 +48,60 @@ msgstr "Por favor entre %s ou menos número de dígitos."
 msgid "Invalid Choice."
 msgstr "Escolha inválida."
 
-#: survey/forms.py:270
+#: survey/forms.py:266
 msgid "Date:"
 msgstr "Data:"
 
-#: survey/forms.py:270
+#: survey/forms.py:266
 msgid "Time:"
 msgstr "Tempo:"
 
-#: survey/forms.py:290 survey/forms.py:294
+#: survey/forms.py:286 survey/forms.py:290
 msgid "The title of the survey must be unique."
 msgstr "O título da pesquisa precisa ser único."
 
 #: survey/models.py:16
-msgid "Text Input"
-msgstr "Entrada de texto"
+#, fuzzy
+msgid "Text"
+msgstr "Texto"
 
 #: survey/models.py:17
-msgid "Text Area"
-msgstr "Área de texto"
+#, fuzzy
+msgid "Text long"
+msgstr "Texto grande"
 
 #: survey/models.py:18
-msgid "Integer Input"
-msgstr "Entrada para número inteiros"
+msgid "Numbers"
+msgstr "Números"
 
 #: survey/models.py:19
-msgid "Integer Input (2 digits)"
-msgstr "Entrada para número inteiros (2 dígitos)"
+#, fuzzy
+msgid "List Choices"
+msgstr "Lista de opções"
 
 #: survey/models.py:20
-msgid "Integer Input (3 digits)"
-msgstr "Entrada para número inteiros (3 dígitos)"
+#, fuzzy
+msgid "Radio buttons"
+msgstr "Botões de radio"
 
 #: survey/models.py:21
-msgid "Integer Input (4 digits)"
-msgstr "Entrada para número inteiros (4 dígitos)"
+#, fuzzy
+msgid "Checkbox buttons"
+msgstr "Botões de caixa  Checkbox"
 
-#: survey/models.py:22
-msgid "Integer Input (5 digits)"
-msgstr "Entrada para número inteiros (5 dígitos)"
+#: survey/models.py:31
+msgid "title"
+msgstr "título"
 
-#: survey/models.py:23
-msgid "Select One Choice"
-msgstr "Seleção de opção"
-
-#: survey/models.py:24
-msgid "Radio List"
-msgstr "Lista Radio"
-
-#: survey/models.py:25
-msgid "Checkbox List"
-msgstr "Lista Checkbox"
-
-#: survey/models.py:35
-msgid "survey title"
-msgstr "Título da pesquisa"
-
-#: survey/models.py:36
+#: survey/models.py:32
 msgid "slug"
 msgstr "slug"
 
-#: survey/models.py:39
+#: survey/models.py:35
 msgid "description"
 msgstr "Descrição"
 
-#: survey/models.py:40
+#: survey/models.py:36
 msgid ""
 "This field appears on the public web site and should give an overview to the "
 "interviewee"
@@ -120,35 +109,37 @@ msgstr ""
 "Esse campo aparece sobre o site web público e deve dar um avaliação aos "
 "entrevistados"
 
+#: survey/models.py:40
+msgid "date publish"
+msgstr "Data de publicação"
+
+#: survey/models.py:41
+#, fuzzy
+msgid "date end"
+msgstr "Data de término"
+
+#: survey/models.py:43
+msgid "active"
+msgstr "Ativo"
+
 #: survey/models.py:44
-msgid "survey starts accepting submissions on"
-msgstr "A pesquisa começa apartir da data"
+msgid "show results at end of the survey"
+msgstr "Mostrar resultados no final da pesquisa"
 
 #: survey/models.py:45
-msgid "survey stops accepting submissions on"
-msgstr "A pesquisa termina nessa data"
+#, fuzzy
+msgid "only to authentified user"
+msgstr "Somente usuários autenticados"
 
 #: survey/models.py:47
-msgid "survey is visible"
-msgstr "A pesquisa está visível"
-
-#: survey/models.py:48
-msgid "survey results are public"
-msgstr "Os resultados da pesquisa são públicos"
-
-#: survey/models.py:49
-msgid "restrict the survey to authentified user"
-msgstr "restringir a usuários autenticados"
-
-#: survey/models.py:51
 msgid "allows multiple interviews"
 msgstr "permitir múltiplas entrevistas"
 
-#: survey/models.py:53
+#: survey/models.py:49
 msgid "template name"
 msgstr "nome do template"
 
-#: survey/models.py:55
+#: survey/models.py:51
 msgid ""
 "This field is used to define a custom template (Example: 'dj_survey/template/"
 "my_add_interview_forms.html')."
@@ -156,107 +147,108 @@ msgstr ""
 "Esse campo deve ser usado para definir um template personalizado(Exemplo: "
 "'dj_survey/template/my_add_interview_forms.html')."
 
-#: survey/models.py:102
+#: survey/models.py:98
 msgid "private"
 msgstr "privado"
 
-#: survey/models.py:103
+#: survey/models.py:99
 msgid "open"
 msgstr "aberto"
 
-#: survey/models.py:105
+#: survey/models.py:101
 msgid "opens "
 msgstr "abre "
 
-#: survey/models.py:106
+#: survey/models.py:102
 msgid "closed"
 msgstr "fechado"
 
-#: survey/models.py:166
+#: survey/models.py:162
 msgid "Pesquisa"
 msgstr ""
 
-#: survey/models.py:167
+#: survey/models.py:163
 msgid "Pesquisas"
 msgstr ""
 
-#: survey/models.py:171
+#: survey/models.py:167
 msgid "survey"
 msgstr "pesquisa"
 
-#: survey/models.py:172
-msgid "question type"
-msgstr "tipo de pergunta"
-
-#: survey/models.py:175
-msgid "required"
-msgstr "obrigatório"
-
-#: survey/models.py:176
+#: survey/models.py:168
 msgid "question text"
 msgstr "texto da pergunta"
 
-#: survey/models.py:177 survey/models.py:246
+#: survey/models.py:169
+#, fuzzy
+msgid "answer format"
+msgstr "formato da resposta"
+
+#: survey/models.py:172
+msgid "required"
+msgstr "obrigatório"
+
+#: survey/models.py:174 survey/models.py:243
 msgid "order"
 msgstr "ordem"
 
-#: survey/models.py:182
+#: survey/models.py:179
 msgid "minimum number of choices"
 msgstr "número minimo de opções"
 
-#: survey/models.py:184
+#: survey/models.py:181
 msgid "maximum number of choices"
 msgstr "número máximo de opções"
 
-#: survey/models.py:188
+#: survey/models.py:185
 msgid "Html Style"
 msgstr "Estilo Html"
 
-#: survey/models.py:221
+#: survey/models.py:218
 msgid "Pergunta"
 msgstr ""
 
-#: survey/models.py:222
+#: survey/models.py:219
 msgid "Perguntas"
 msgstr ""
 
-#: survey/models.py:243 survey/models.py:276
+#: survey/models.py:240 survey/models.py:273
 msgid "question"
 msgstr "pergunta"
 
-#: survey/models.py:244
+#: survey/models.py:241
 msgid "choice text"
 msgstr "texto da opção"
 
-#: survey/models.py:268
+#: survey/models.py:265
 msgid "Choice"
 msgstr "Opção"
 
-#: survey/models.py:269
+#: survey/models.py:266
 msgid "Choices"
 msgstr "Opções"
 
-#: survey/models.py:273
+#: survey/models.py:270
 msgid "user"
 msgstr "usuário"
 
-#: survey/models.py:279
+#: survey/models.py:276
 msgid "session key"
 msgstr "chave de sessão"
 
-#: survey/models.py:280
+#: survey/models.py:277
 msgid "answer text"
 msgstr "texto da resposta"
 
-#: survey/models.py:283
+#: survey/models.py:280
 msgid "Interview unique identifier"
 msgstr "Indentificador único da entrevista"
 
-#: survey/models.py:290
+#: survey/models.py:287
 msgid "Answer"
 msgstr "Resposta"
 
-#: survey/models.py:291
+#: survey/models.py:288
 msgid "Answers"
 msgstr "Respostas"
 
@@ -321,6 +313,42 @@ msgstr "Resultados"
 #, python-format
 msgid "The form %s has already been registered."
 msgstr "O fomulário %s já foi registrado."
+
+#~ msgid "Integer Input"
+#~ msgstr "Entrada para número inteiros"
+
+#~ msgid "Integer Input (2 digits)"
+#~ msgstr "Entrada para número inteiros (2 dígitos)"
+
+#~ msgid "Integer Input (3 digits)"
+#~ msgstr "Entrada para número inteiros (3 dígitos)"
+
+#~ msgid "Integer Input (4 digits)"
+#~ msgstr "Entrada para número inteiros (4 dígitos)"
+
+#~ msgid "Integer Input (5 digits)"
+#~ msgstr "Entrada para número inteiros (5 dígitos)"
+
+#~ msgid "Select One Choice"
+#~ msgstr "Seleção de opção"
+
+#~ msgid "survey title"
+#~ msgstr "Título da pesquisa"
+
+#~ msgid "survey starts accepting submissions on"
+#~ msgstr "A pesquisa começa apartir da data"
+
+#~ msgid "survey stops accepting submissions on"
+#~ msgstr "A pesquisa termina nessa data"
+
+#~ msgid "survey is visible"
+#~ msgstr "A pesquisa está visível"
+
+#~ msgid "survey results are public"
+#~ msgstr "Os resultados da pesquisa são públicos"
+
+#~ msgid "question type"
+#~ msgstr "tipo de pergunta"
 
 #, fuzzy
 #~ msgid "Survey"
