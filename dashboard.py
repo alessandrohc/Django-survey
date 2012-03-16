@@ -20,30 +20,24 @@ class CustomIndexDashboard(Dashboard):
     
     def init_with_context(self, context):
         site_name = get_admin_site_name(context)
+        request = context['request']
         
-        # append a group for "Administration" & "Applications"
-        self.children.append(modules.Group(
-            _('Group: Administration & Applications'),
-            column=1,
-            collapsible=True,
-            children = [
-                modules.AppList(
-                    _('Administration'),
-                    column=1,
-                    collapsible=False,
-                    models=('django.contrib.*',),
-                )
-            ]
-        ))
-        
-        # append an app list module for "Applications"
-        self.children.append(modules.AppList(
-            _('AppList: Applications'),
-            collapsible=True,
-            column=1,
-            css_classes=('collapse open',),
-            exclude=('django.contrib.*',),
-        ))
+        if request.user.is_superuser:
+            # append an app list module for "Applications"
+            self.children.append(modules.ModelList(
+                _('AppList: Applications'),
+                collapsible=False,
+                column=1,
+                exclude=('django.contrib.*',),
+            ))
+        else:
+            self.children.append(modules.ModelList(
+                title=_('Administration'),
+                column=1,
+                models=('survey.models.Survey',
+                        'survey.models.Question',
+                        )
+            ))
         
         # append an app list module for "Administration"
         self.children.append(modules.ModelList(
