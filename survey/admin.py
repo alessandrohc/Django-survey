@@ -1,4 +1,4 @@
-# -*- coding: latin-1 -*-
+# -*- coding: utf-8 -*-
 from survey.models import Answer, Choice, Question, Survey
 from django.contrib import admin
 
@@ -25,7 +25,7 @@ class QuestionOptions(admin.ModelAdmin):
         'qtype', 
         'required'
     )
-    # exclui a exibição dos seguintes campos.
+    # exclui a exibiÃ§Ã£o dos seguintes campos.
     exclude = (
         'choice_num_min', 
         'choice_num_max', 
