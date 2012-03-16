@@ -14,6 +14,9 @@ class QuestionOptions(admin.ModelAdmin):
     """
     A newforms-admin options class for the ``Question`` model.
     """
+    class Media:
+        js = ("/static/js/control_hide.js",)
+        
     list_select_related = True
     list_filter = ('survey', 'qtype')
     list_display_links = ('text',)
@@ -59,16 +62,6 @@ class SurveyOptions(admin.ModelAdmin):
         'public',
         'restricted'
     )
-    #prepopulated_fields = {'slug': ('title',)}
-    #list_display = (
-        #'__unicode__', 
-        #'visible', 
-        #'public',
-        #'opens', 
-        #'closes', 
-        #'open'
-    #)
-    #inlines = [QuestionInline]
 
 class AnswerOptions(admin.ModelAdmin):
     """
