@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Survey Models
 """
 import datetime
@@ -14,11 +15,11 @@ from django.contrib.contenttypes import generic
 
 QTYPE_CHOICES = (
     ('T', _('Text')),
-    ('A', _('Text long')),
+    ('A', _('Texto grande')),
     ('i', _('Numbers')),
-    ('S', _('List Choices')),
-    ('R', _('Radio buttons')),
-    ('C', _('Checkbox buttons'))
+    ('S', _(u'Lista de opções')),
+    ('R', _(u'Botões de radio')),
+    ('C', _(u'Botões de caixa de marcação'))
 )
 class SurveyManager(models.Manager):
 
@@ -38,11 +39,11 @@ class Survey(models.Model):
     )
     ## Add validation on datetimes
     opens   = models.DateTimeField(_('date publish'))
-    closes  = models.DateTimeField(_('date end'))
+    closes  = models.DateTimeField(_(u'data de término'))
     # Define the behavior of the survey
     visible = models.BooleanField(_('active'))
     public  = models.BooleanField(_('show results at end of the survey'))
-    restricted = models.BooleanField(verbose_name=_("only to authentified user")
+    restricted = models.BooleanField(verbose_name=_(u"Somente usuários autenticados")
                                      ,blank=True,default=False)
     allows_multiple_interviews = models.BooleanField(verbose_name=_("allows multiple interviews")
                                                      ,blank=True,default=True)
@@ -166,7 +167,7 @@ class Question(models.Model):
     survey = models.ForeignKey(Survey, related_name='questions',
                                  verbose_name=_('survey'))
     text     = models.TextField(_('question text'))
-    qtype = models.CharField(_('answer format'), max_length=2,
+    qtype = models.CharField(_('formato de resposta'), max_length=2,
                                 choices=QTYPE_CHOICES,
                                 default='T')
     required = models.BooleanField(_('required'), default=True)

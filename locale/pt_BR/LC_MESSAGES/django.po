@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-16 11:46-0300\n"
+"POT-Creation-Date: 2012-03-16 11:56-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,48 +60,44 @@ msgstr "Tempo:"
 msgid "The title of the survey must be unique."
 msgstr "O título da pesquisa precisa ser único."
 
-#: survey/models.py:16
+#: survey/models.py:17
 #, fuzzy
 msgid "Text"
 msgstr "Texto"
 
-#: survey/models.py:17
-#, fuzzy
-msgid "Text long"
-msgstr "Texto grande"
-
 #: survey/models.py:18
+msgid "Texto grande"
+msgstr ""
+
+#: survey/models.py:19
 msgid "Numbers"
 msgstr "Números"
 
-#: survey/models.py:19
-#, fuzzy
-msgid "List Choices"
-msgstr "Lista de opções"
-
 #: survey/models.py:20
-#, fuzzy
-msgid "Radio buttons"
-msgstr "Botões de radio"
+msgid "Lista de opções"
+msgstr ""
 
 #: survey/models.py:21
-#, fuzzy
-msgid "Checkbox buttons"
-msgstr "Botões de caixa  Checkbox"
+msgid "Botões de radio"
+msgstr ""
 
-#: survey/models.py:31
+#: survey/models.py:22
+msgid "Botões de caixa de marcação"
+msgstr ""
+
+#: survey/models.py:32
 msgid "title"
 msgstr "título"
 
-#: survey/models.py:32
+#: survey/models.py:33
 msgid "slug"
 msgstr "slug"
 
-#: survey/models.py:35
+#: survey/models.py:36
 msgid "description"
 msgstr "Descrição"
 
-#: survey/models.py:36
+#: survey/models.py:37
 msgid ""
 "This field appears on the public web site and should give an overview to the "
 "interviewee"
@@ -109,37 +105,35 @@ msgstr ""
 "Esse campo aparece sobre o site web público e deve dar um avaliação aos "
 "entrevistados"
 
-#: survey/models.py:40
+#: survey/models.py:41
 msgid "date publish"
 msgstr "Data de publicação"
 
-#: survey/models.py:41
-#, fuzzy
-msgid "date end"
-msgstr "Data de término"
+#: survey/models.py:42
+msgid "data de término"
+msgstr ""
 
-#: survey/models.py:43
+#: survey/models.py:44
 msgid "active"
 msgstr "Ativo"
 
-#: survey/models.py:44
+#: survey/models.py:45
 msgid "show results at end of the survey"
 msgstr "Mostrar resultados no final da pesquisa"
 
-#: survey/models.py:45
-#, fuzzy
-msgid "only to authentified user"
-msgstr "Somente usuários autenticados"
+#: survey/models.py:46
+msgid "Somente usuários autenticados"
+msgstr ""
 
-#: survey/models.py:47
+#: survey/models.py:48
 msgid "allows multiple interviews"
 msgstr "permitir múltiplas entrevistas"
 
-#: survey/models.py:49
+#: survey/models.py:50
 msgid "template name"
 msgstr "nome do template"
 
-#: survey/models.py:51
+#: survey/models.py:52
 msgid ""
 "This field is used to define a custom template (Example: 'dj_survey/template/"
 "my_add_interview_forms.html')."
@@ -147,108 +141,107 @@ msgstr ""
 "Esse campo deve ser usado para definir um template personalizado(Exemplo: "
 "'dj_survey/template/my_add_interview_forms.html')."
 
-#: survey/models.py:98
+#: survey/models.py:99
 msgid "private"
 msgstr "privado"
 
-#: survey/models.py:99
+#: survey/models.py:100
 msgid "open"
 msgstr "aberto"
 
-#: survey/models.py:101
+#: survey/models.py:102
 msgid "opens "
 msgstr "abre "
 
-#: survey/models.py:102
+#: survey/models.py:103
 msgid "closed"
 msgstr "fechado"
 
-#: survey/models.py:162
+#: survey/models.py:163
 msgid "Pesquisa"
 msgstr ""
 
-#: survey/models.py:163
+#: survey/models.py:164
 msgid "Pesquisas"
 msgstr ""
 
-#: survey/models.py:167
+#: survey/models.py:168
 msgid "survey"
 msgstr "pesquisa"
 
-#: survey/models.py:168
+#: survey/models.py:169
 msgid "question text"
 msgstr "texto da pergunta"
 
-#: survey/models.py:169
-#, fuzzy
-msgid "answer format"
-msgstr "formato da resposta"
+#: survey/models.py:170
+msgid "formato de resposta"
+msgstr ""
 
-#: survey/models.py:172
+#: survey/models.py:173
 msgid "required"
 msgstr "obrigatório"
 
-#: survey/models.py:174 survey/models.py:243
+#: survey/models.py:175 survey/models.py:244
 msgid "order"
 msgstr "ordem"
 
-#: survey/models.py:179
+#: survey/models.py:180
 msgid "minimum number of choices"
 msgstr "número minimo de opções"
 
-#: survey/models.py:181
+#: survey/models.py:182
 msgid "maximum number of choices"
 msgstr "número máximo de opções"
 
-#: survey/models.py:185
+#: survey/models.py:186
 msgid "Html Style"
 msgstr "Estilo Html"
 
-#: survey/models.py:218
+#: survey/models.py:219
 msgid "Pergunta"
 msgstr ""
 
-#: survey/models.py:219
+#: survey/models.py:220
 msgid "Perguntas"
 msgstr ""
 
-#: survey/models.py:240 survey/models.py:273
+#: survey/models.py:241 survey/models.py:274
 msgid "question"
 msgstr "pergunta"
 
-#: survey/models.py:241
+#: survey/models.py:242
 msgid "choice text"
 msgstr "texto da opção"
 
-#: survey/models.py:265
+#: survey/models.py:266
 msgid "Choice"
 msgstr "Opção"
 
-#: survey/models.py:266
+#: survey/models.py:267
 msgid "Choices"
 msgstr "Opções"
 
-#: survey/models.py:270
+#: survey/models.py:271
 msgid "user"
 msgstr "usuário"
 
-#: survey/models.py:276
+#: survey/models.py:277
 msgid "session key"
 msgstr "chave de sessão"
 
-#: survey/models.py:277
+#: survey/models.py:278
 msgid "answer text"
 msgstr "texto da resposta"
 
-#: survey/models.py:280
+#: survey/models.py:281
 msgid "Interview unique identifier"
 msgstr "Indentificador único da entrevista"
 
-#: survey/models.py:287
+#: survey/models.py:288
 msgid "Answer"
 msgstr "Resposta"
 
-#: survey/models.py:288
+#: survey/models.py:289
 msgid "Answers"
 msgstr "Respostas"
 
@@ -313,6 +306,34 @@ msgstr "Resultados"
 #, python-format
 msgid "The form %s has already been registered."
 msgstr "O fomulário %s já foi registrado."
+
+#, fuzzy
+#~ msgid "Text long"
+#~ msgstr "Texto grande"
+
+#, fuzzy
+#~ msgid "List Choices"
+#~ msgstr "Lista de opções"
+
+#, fuzzy
+#~ msgid "Radio buttons"
+#~ msgstr "Botões de radio"
+
+#, fuzzy
+#~ msgid "Checkbox buttons"
+#~ msgstr "Botões de caixa  Checkbox"
+
+#, fuzzy
+#~ msgid "date end"
+#~ msgstr "Data de término"
+
+#, fuzzy
+#~ msgid "only to authentified user"
+#~ msgstr "Somente usuários autenticados"
+
+#, fuzzy
+#~ msgid "answer format"
+#~ msgstr "formato da resposta"
 
 #~ msgid "Integer Input"
 #~ msgstr "Entrada para número inteiros"
