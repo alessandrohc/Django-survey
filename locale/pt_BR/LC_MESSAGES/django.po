@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-16 11:07-0300\n"
+"POT-Creation-Date: 2012-03-16 11:15-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -173,13 +173,12 @@ msgid "closed"
 msgstr "fechado"
 
 #: survey/models.py:166
-#, fuzzy
-msgid "Survey"
-msgstr "Pesquisa"
+msgid "Pesquisa"
+msgstr ""
 
-#: survey/models.py:167 survey/views.py:389 survey/views.py:409
-msgid "Surveys"
-msgstr "Pesquisas"
+#: survey/models.py:167
+msgid "Pesquisas"
+msgstr ""
 
 #: survey/models.py:171
 msgid "survey"
@@ -214,14 +213,12 @@ msgid "Html Style"
 msgstr "Estilo Html"
 
 #: survey/models.py:221
-#, fuzzy
-msgid "Question"
-msgstr "Pergunta"
+msgid "Pergunta"
+msgstr ""
 
 #: survey/models.py:222
-#, fuzzy
-msgid "Questions"
-msgstr "Perguntas"
+msgid "Perguntas"
+msgstr ""
 
 #: survey/models.py:243 survey/models.py:276
 msgid "question"
@@ -308,6 +305,10 @@ msgstr "Atualizar uma opção"
 msgid "Delete choice"
 msgstr "Deletar uma opção"
 
+#: survey/views.py:389 survey/views.py:409
+msgid "Surveys"
+msgstr "Pesquisas"
+
 #: survey/views.py:432 survey/views.py:462
 msgid "Insufficient Privileges."
 msgstr "Previlégios insuficientes."
@@ -320,6 +321,18 @@ msgstr "Resultados"
 #, python-format
 msgid "The form %s has already been registered."
 msgstr "O fomulário %s já foi registrado."
+
+#, fuzzy
+#~ msgid "Survey"
+#~ msgstr "Pesquisa"
+
+#, fuzzy
+#~ msgid "Question"
+#~ msgstr "Pergunta"
+
+#, fuzzy
+#~ msgid "Questions"
+#~ msgstr "Perguntas"
 
 #~ msgid "Radio Image List"
 #~ msgstr "Lista Imagem Radio"
