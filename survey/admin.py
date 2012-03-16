@@ -7,9 +7,8 @@ class ChoiceInline(admin.TabularInline):
     A newforms-admin inline option class for the ``Choice`` model.
     """
     model = Choice
-    extra = 2
+    extra = 4
     fields = ('text', 'order',)
-    template = 'admin/survey/choice/edit_inline_tabular.html'
 
 class QuestionOptions(admin.ModelAdmin):
     """

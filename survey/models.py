@@ -13,16 +13,12 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
 QTYPE_CHOICES = (
-    ('T', _('Text Input')),
-    ('A', _('Text Area')),
-    ('i', _('Integer Input')),
-    ('i2', _('Integer Input (2 digits)')),
-    ('i3', _('Integer Input (3 digits)')),
-    ('i4', _('Integer Input (4 digits)')),
-    ('i5', _('Integer Input (5 digits)')),
-    ('S', _('Select One Choice')),
-    ('R', _('Radio List')),
-    ('C', _('Checkbox List'))
+    ('T', _('Text')),
+    ('A', _('Text long')),
+    ('i', _('Numbers')),
+    ('S', _('List Choices')),
+    ('R', _('Radio buttons')),
+    ('C', _('Checkbox buttons'))
 )
 class SurveyManager(models.Manager):
 
@@ -32,7 +28,7 @@ class SurveyManager(models.Manager):
 
 class Survey(models.Model):
     
-    title = models.CharField(_('survey title'), max_length=255)
+    title = models.CharField(_('title'), max_length=255)
     slug  = models.SlugField(_('slug'), max_length=255, unique=True)
     
     description= models.TextField(
@@ -41,12 +37,12 @@ class Survey(models.Model):
         blank=True
     )
     ## Add validation on datetimes
-    opens   = models.DateTimeField(_('survey starts accepting submissions on'))
-    closes  = models.DateTimeField(_('survey stops accepting submissions on'))
+    opens   = models.DateTimeField(_('date publish'))
+    closes  = models.DateTimeField(_('date end'))
     # Define the behavior of the survey
-    visible = models.BooleanField(_('survey is visible'))
-    public  = models.BooleanField(_('survey results are public'))
-    restricted = models.BooleanField(verbose_name=_("restrict the survey to authentified user")
+    visible = models.BooleanField(_('active'))
+    public  = models.BooleanField(_('show results at end of the survey'))
+    restricted = models.BooleanField(verbose_name=_("only to authentified user")
                                      ,blank=True,default=False)
     allows_multiple_interviews = models.BooleanField(verbose_name=_("allows multiple interviews")
                                                      ,blank=True,default=True)
@@ -169,11 +165,12 @@ class Survey(models.Model):
 class Question(models.Model):
     survey = models.ForeignKey(Survey, related_name='questions',
                                  verbose_name=_('survey'))
-    qtype = models.CharField(_('question type'), max_length=2,
+    text     = models.TextField(_('question text'))
+    qtype = models.CharField(_('answer format'), max_length=2,
                                 choices=QTYPE_CHOICES,
                                 default='T')
     required = models.BooleanField(_('required'), default=True)
-    text     = models.TextField(_('question text'))
+    
     order = models.IntegerField(verbose_name = _("order"),
                                 null=True, blank=True)
     
