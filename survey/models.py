@@ -161,8 +161,11 @@ class Survey(models.Model):
         if self.public: return True
         if user.is_anonymous(): return False
         return user.has_perm('survey.view_answers')
-
-
+    
+    class Meta:
+        verbose_name        = _("Survey")
+        verbose_name_plural = _("Surveys")
+    
 class Question(models.Model):
     survey = models.ForeignKey(Survey, related_name='questions',
                                  verbose_name=_('survey'))
@@ -215,6 +218,8 @@ class Question(models.Model):
         # unique_together = (('survey', 'text'),)
         order_with_respect_to='survey'
         ordering = ('survey', 'order')
+        verbose_name        = _("Question")
+        verbose_name_plural = _("Questions")
 
     class Admin:
         list_select_related = True
@@ -260,6 +265,8 @@ class Choice(models.Model):
         #  unique_together = (('question', 'text'),)
         order_with_respect_to='question'
         ordering = ('question', 'order')
+        verbose_name        = _("Choice")
+        verbose_name_plural = _("Choices")
 
 class Answer(models.Model):
     user = models.ForeignKey(User, related_name='answers',
@@ -280,3 +287,5 @@ class Answer(models.Model):
         # unique_together = (('question', 'session_key'),)
         permissions = (("view_answers",     "Can view survey answers"),
                        ("view_submissions", "Can view survey submissions"))
+        verbose_name        = _("Answer")
+        verbose_name_plural = _("Answers")
