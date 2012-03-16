@@ -83,22 +83,11 @@ class ChoiceOptions(admin.ModelAdmin):
     list_filter = ('question',)
 
 # The try/catch blocks are there to supress the ``AlreadyRegistered`` warning.
-try:
-    admin.site.register(Question, QuestionOptions)
-except:
-    pass
-
-try:
-    admin.site.register(Survey, SurveyOptions)
-except:
-    pass
-
-try:
-    admin.site.register(Answer, AnswerOptions)
-except:
-    pass
-
-try:
-    admin.site.register(Choice, ChoiceOptions)
-except:
-    pass
+try: admin.site.register(Question, QuestionOptions)
+except: pass
+try: admin.site.register(Survey, SurveyOptions)
+except: pass
+try: admin.site.register(Answer, AnswerOptions)
+except: pass
+try: admin.site.register(Choice, ChoiceOptions)
+except: pass

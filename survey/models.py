@@ -53,8 +53,8 @@ class Survey(models.Model):
     
     # Control who can edit the survey
     # TODO: Plug this control in the view used to edit the survey
-    created_by = models.ForeignKey(User, related_name="created_surveys")
-    editable_by = models.ForeignKey(User,related_name="owned_surveys")
+    created_by = models.ForeignKey(User, related_name="created_surveys",null=True)
+    editable_by = models.ForeignKey(User, related_name="owned_surveys",null=True)
 
     # Integration in Pinax
     recipient_type = models.ForeignKey(ContentType,null=True)
