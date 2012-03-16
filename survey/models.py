@@ -163,8 +163,8 @@ class Survey(models.Model):
         return user.has_perm('survey.view_answers')
     
     class Meta:
-        verbose_name        = _("Survey")
-        verbose_name_plural = _("Surveys")
+        verbose_name        = _("Pesquisa")
+        verbose_name_plural = _("Pesquisas")
     
 class Question(models.Model):
     survey = models.ForeignKey(Survey, related_name='questions',
@@ -218,8 +218,8 @@ class Question(models.Model):
         # unique_together = (('survey', 'text'),)
         order_with_respect_to='survey'
         ordering = ('survey', 'order')
-        verbose_name        = _("Question")
-        verbose_name_plural = _("Questions")
+        verbose_name        = _("Pergunta")
+        verbose_name_plural = _("Perguntas")
 
     class Admin:
         list_select_related = True
