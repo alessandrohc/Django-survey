@@ -1,5 +1,6 @@
-// Desenvolvido por: Alex Sandro
-// 
+//* Desenvolvido por: Alex Sandro
+//* alex@fabricaditial.com.br
+
 (function($) {
 // ----------------------------------------------------
 	//*  Secure Hash Algorithm (SHA1)

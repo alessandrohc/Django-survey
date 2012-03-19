@@ -1,5 +1,5 @@
 // Desenvolvido por: Alex Sandro
-// 
+// alex@fabricaditial.com.br
 (function($) {
   // ----------------------------------------------------
   function is_valid() { // se a seleção é válida.
