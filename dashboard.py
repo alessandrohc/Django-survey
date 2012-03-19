@@ -44,3 +44,4 @@ class CustomIndexDashboard(Dashboard):
                     'survey.models.Question',
                 )
             ))
+            

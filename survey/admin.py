@@ -53,8 +53,12 @@ class SurveyOptions(admin.ModelAdmin):
     """
     A newforms-admin options class for the ``Survey`` model.
     """
+    class Media:
+        js = ("/static/js/control_slug.js",)
+        
     fields = (
-        'title', 
+        'title',
+        'slug',
         'description',
         'opens',
         'closes',
