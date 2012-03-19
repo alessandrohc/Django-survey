@@ -12,17 +12,22 @@ from django.core.urlresolvers import reverse
 from grappelli.dashboard import modules, Dashboard
 from grappelli.dashboard.utils import get_admin_site_name
 
-
 class CustomIndexDashboard(Dashboard):
-    """
-    Custom index dashboard for www.
-    """
+    """ Custom index dashboard for www. """
     
     def init_with_context(self, context):
         site_name = get_admin_site_name(context)
         request = context['request']
         
         if request.user.is_superuser:
+            # append an app list module for "Administration"
+            self.children.append(modules.ModelList(
+                _('ModelList: Administration'),
+                column=1,
+                collapsible=False,
+                models=('django.contrib.*',),
+            ))
+            
             # append an app list module for "Applications"
             self.children.append(modules.ModelList(
                 _('AppList: Applications'),
@@ -32,18 +37,10 @@ class CustomIndexDashboard(Dashboard):
             ))
         else:
             self.children.append(modules.ModelList(
-                title=_('Administration'),
-                column=1,
-                models=('survey.models.Survey',
-                        'survey.models.Question',
-                        )
+                title = _('Administration'),
+                column = 1,
+                models = (
+                    'survey.models.Survey',
+                    'survey.models.Question',
+                )
             ))
-        
-        # append an app list module for "Administration"
-        self.children.append(modules.ModelList(
-            _('ModelList: Administration'),
-            column=1,
-            collapsible=False,
-            models=('django.contrib.*',),
-        ))
-        
