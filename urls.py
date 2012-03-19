@@ -11,15 +11,19 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     (r'^grappelli/', include('grappelli.urls')),
     
-    #
     (r'survey/', include('survey.urls')),
-    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
+    
+    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', 
      {'document_root': settings.MEDIA_ROOT}),
+    
     url(r'^login/$', login,
         {'template_name':'admin/login.html'},name='auth_login'),
+    
     url(r'^logout/$', logout,
         {'template_name':'registration/logged_out.html'},name='auth_logout'),
+    
     url(r'^password_change/$', password_change,
         {'template_name':'admin/password_change.html'},name='auth_password_change'),
+    
     url(r'^$', direct_to_template, {"template" : "main_page.html"})
 )
