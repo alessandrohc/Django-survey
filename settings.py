@@ -134,7 +134,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'grappelli.dashboard',
     'grappelli',
-    'django.contrib.admin',    
+    'django.contrib.admin',
     'Django-survey',
     'survey',
 )
