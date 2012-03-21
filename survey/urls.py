@@ -1,7 +1,10 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls.defaults import patterns, url
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.list_detail import object_list
 from django.conf.urls.defaults import *
+# Survey setting
+from django.views.generic.simple import redirect_to
 from models import Survey
 from views import answers_list, answers_detail,\
                 survey_detail, survey_edit, survey_add,\
@@ -11,13 +14,24 @@ from views import answers_list, answers_detail,\
                 visible_survey_list, \
                 ajax
 
+def redirect_start():
+    """ redirecionamento para a página inicial de survey
+    retorna a lista de padrões já compilados """
+    _urlpatterns = patterns("",
+        (r'surveys/', include('survey.urls')),
+        url(r'^$', redirect_to, {'url':'surveys/'}),
+    )
+    return _urlpatterns
+
 urlpatterns = patterns('',
-    url(r'^visible/$', visible_survey_list, name='surveys-visible'),
-    url(r'^editable/$', editable_survey_list, name='surveys-editable'),
-    url(r'^detail/(?P<survey_slug>[-\w]+)/$', survey_detail, name='survey-detail'),
-    url(r'^answers/(?P<survey_slug>[-\w]+)/$', answers_list, name='survey-results'),
+    # página inicialmente apresentada.
+    url(r'^$', visible_survey_list, name='surveys-visible'),
     
-    url(r'^answers/(?P<survey_slug>[-\w]+)/(?P<key>[a-fA-F0-9]{10,40})/$', 
+    url(r'^editable/$', editable_survey_list, name='surveys-editable'),
+    url(r'^detail/(?P<survey_id>[-\w]+)/$', survey_detail, name='survey-detail'),
+    url(r'^answers/(?P<survey_id>[-\w]+)/$', answers_list, name='survey-results'),
+    
+    url(r'^answers/(?P<survey_id>[-\w]+)/(?P<key>[a-fA-F0-9]{10,40})/$', 
         answers_detail,  name='answers-detail'),
     
     url(r'^edit/(?P<survey_slug>[-\w]+)/$', survey_edit, name='survey-edit'),
