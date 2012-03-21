@@ -22,7 +22,6 @@ from survey.forms import forms_for_survey, SurveyForm, QuestionForm, ChoiceForm
 from survey.models import Survey, Answer, Question, Choice
 from django.contrib.auth.decorators import login_required
 
-
 def _survey_redirect(request, survey,
                     group_slug=None, group_slug_field=None, group_qs=None,
                     template_name = 'survey/thankyou.html',
@@ -49,7 +48,7 @@ def _survey_redirect(request, survey,
         return HttpResponseRedirect(request.REQUEST['next'])
     if survey.answers_viewable_by(request.user):
         return HttpResponseRedirect(reverse('survey-results', None, (),
-                                                {'survey_slug': survey.slug}))
+                                                {'survey_id': survey.id}))
 
     # For this survey, have they answered any questions?
     if (hasattr(request, 'session') and Answer.objects.filter(
@@ -66,20 +65,18 @@ def _survey_redirect(request, survey,
                               {'survey': survey, 'title': _('Thank You')},
                               context_instance=RequestContext(request))
 
-def survey_detail(request, survey_slug,
+def survey_detail(request, survey_id,
                group_slug=None, group_slug_field=None, group_qs=None,
                template_name = 'survey/survey_detail.html',
                extra_context=None,
                allow_edit_existing_answers=False,
                *args, **kw):
-    """
-
-    """
-    survey = get_object_or_404(Survey.objects.filter(visible=True), slug=survey_slug)
+    """ """
+    survey = get_object_or_404(Survey.objects.filter(visible=True), id=survey_id)
     if survey.closed:
         if survey.answers_viewable_by(request.user):
             return HttpResponseRedirect(reverse('survey-results', None, (),
-                                                {'survey_slug': survey_slug}))
+                                                {'survey_id': survey_id}))
         raise Http404 #(_('Page not found.')) # unicode + exceptions = bad
     # if user has a session or is authenticated and have answered
     # some questions and the survey does not accept multiple answers,
@@ -378,6 +375,7 @@ def visible_survey_list(request,
                         template_name = "survey/survey_list.html",
                         extra_context=None,
                         *args, **kw):
+    
     login_user= request.user
     if login_required and not login_user.is_authenticated():
         return redirect_to_login(request.path)
@@ -412,7 +410,7 @@ def editable_survey_list(request,
             })
 
 
-def answers_list(request, survey_slug,
+def answers_list(request, survey_id,
                  group_slug=None, group_slug_field=None, group_qs=None,
                  template_name = 'survey/answers_list.html',
                  extra_context=None,
@@ -420,14 +418,14 @@ def answers_list(request, survey_slug,
     """
     Shows a page showing survey results for an entire survey.
     """
-    survey = get_object_or_404(Survey.objects.filter(visible=True), slug=survey_slug)
+    survey = get_object_or_404(Survey.objects.filter(visible=True), id=survey_id)
     # if the user lacks permissions, show an "Insufficient Permissions page"
     if not survey.answers_viewable_by(request.user):
         if (hasattr(request, 'session') and
             survey.has_answers_from(request.session.session_key)):
             return HttpResponseRedirect(
                 reverse('answers-detail', None, (),
-                        {'survey_slug': survey.slug,
+                        {'survey_id': survey.id,
                          'key': request.session.session_key.lower()}))
         return HttpResponse(unicode(_('Insufficient Privileges.')), status=403)
     return render_to_response(template_name,
@@ -438,7 +436,7 @@ def answers_list(request, survey_slug,
 
 
 
-def answers_detail(request, survey_slug, key,
+def answers_detail(request, survey_id, key,
                    group_slug=None, group_slug_field=None, group_qs=None,
                    template_name = 'survey/answers_detail.html',
                    extra_context=None,
@@ -449,7 +447,7 @@ def answers_detail(request, survey_slug, key,
     If the user lacks permissions, show an "Insufficient Permissions page".
     """
     answers = Answer.objects.filter(session_key=key.lower(),
-        question__survey__visible=True, question__survey__slug=survey_slug)
+        question__survey__visible=True, question__survey__id=survey_id)
     if not answers.count(): raise Http404
     survey = answers[0].question.survey
 
