@@ -1,4 +1,3 @@
-{% extends "survey/base.html" %}
 {% load i18n %}
 {% block scripts %}{% load adminmedia %}
 <style type="text/css">
@@ -41,7 +40,7 @@
     {% endfor %}
 {% else %}
     {% for answer in question.answers.all %}
-        <div>{% if view_submissions %}<a href='{% url answers-detail survey_slug=survey.slug,key=answer.session_key %}'>{% endif %}{% trans "Answer" %} {{ forloop.counter }}{% if view_submissions %}</a>{% endif %} {% trans "of" %} {{ question.answer_count }}</div>
+        <div>{% if view_submissions %}<a href='{% url answers-detail survey_id=survey.id, key=answer.session_key %}'>{% endif %}{% trans "Answer" %} {{ forloop.counter }}{% if view_submissions %}</a>{% endif %} {% trans "of" %} {{ question.answer_count }}</div>
         <div class="answer">{{ answer.text }}</div>
         <hr/>
     {% endfor %}
