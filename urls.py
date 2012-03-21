@@ -1,17 +1,22 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls.defaults import patterns, url, include
 from django.contrib import admin
 from django.contrib.auth.views import login, logout, password_change
 from django.views.generic.simple import direct_to_template
 from django.conf import settings
+# survey imports
+from survey.urls import redirect_start
+import survey.views
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
+# redirecionamento de survey para a página inicial
+urlpatterns = redirect_start()
+
+urlpatterns += patterns('',
     # Admin
     url(r'^admin/', include(admin.site.urls)),
     (r'^grappelli/', include('grappelli.urls')),
-    
-    (r'survey/', include('survey.urls')),
     
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', 
      {'document_root': settings.MEDIA_ROOT}),
@@ -24,6 +29,4 @@ urlpatterns = patterns('',
     
     url(r'^password_change/$', password_change,
         {'template_name':'admin/password_change.html'},name='auth_password_change'),
-    
-    url(r'^$', direct_to_template, {"template" : "main_page.html"})
 )
