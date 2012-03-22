@@ -54,10 +54,10 @@ def _survey_redirect(request, survey,
     if (hasattr(request, 'session') and Answer.objects.filter(
             session_key=request.session.session_key.lower(),
             question__survey__visible=True,
-            question__survey__slug=survey.slug).count()):
+            question__survey__id=survey.id).count()):
         return HttpResponseRedirect(
             reverse('answers-detail', None, (),
-                    {'survey_slug': survey.slug,
+                    {'survey_id': survey.id,
                      'key': request.session.session_key.lower()}))
 
     # go to thank you page
