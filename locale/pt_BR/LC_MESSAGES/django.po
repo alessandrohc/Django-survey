@@ -184,7 +184,7 @@ msgstr "obrigatório"
 #: survey/models.py:175 survey/models.py:244
 #: survey/templates/survey/survey_edit.html:14
 msgid "order"
-msgstr "ordem"
+msgstr "posição"
 
 #: survey/models.py:180
 msgid "minimum number of choices"
@@ -392,7 +392,7 @@ msgstr "pessoa(s) responde(u/ram) está pesquisa"
 #: survey/templates/survey/editable_survey_list.html:21
 #: survey/templates/survey/survey_list.html:28
 msgid "No Submissions."
-msgstr "Nenhuma submissão"
+msgstr "Nenhuma resposta"
 
 #: survey/templates/survey/editable_survey_list.html:24
 #: survey/templates/survey/survey_list.html:31
