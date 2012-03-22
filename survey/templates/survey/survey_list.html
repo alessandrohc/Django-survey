@@ -5,11 +5,10 @@
 <h1>{% trans "Surveys"%}</h1>
 <fieldset class="module">
 <table style="width: 100%">
-    <thead><th>{% trans "Survey"%}</th><th>{% trans "Status"%}</th><th>{% trans "Info"%}</th></thead>
+    <thead><th>{% trans "Pesquisa"%}</th><th>{% trans "Status"%}</th><th>{% trans "Info"%}</th></thead>
     {% for survey in object_list %}
         {% if survey.open or user|can_view_answers:survey %}
             <tr class="{% cycle row1,row2 %}">
-            
                 <td>{% if survey.open and not request|has_answered:survey %}
                         <a href='{% url survey-detail survey_id=survey.id %}'>
                             {{ survey.title }}
@@ -18,17 +17,18 @@
                         {{ survey.title }}
                     {% endif %}
                 </td>
-                
             <td>{{ survey.status }}</td>
             <td>
             {% if user|can_view_answers:survey %}
                 {% if survey.interview_count %}
-                    <a href='{% url survey-results survey_id=survey.id %}'>{{ survey.interview_count }} Submission{{ survey.interview_count|pluralize:"s" }}</a>
+                    <a href='{% url survey-results survey_id=survey.id %}'>
+                        {{ survey.interview_count }} {% trans "Submission" %}
+                    </a>
                 {% else %}
                     {% trans "No Submissions."%}
                 {% endif %}
             {% endif %}
-            {% if request|has_answered:survey %}{% trans "You have"%} <a href='{% url answers-detail survey_id=survey.id,key=request.session.session_key %}'>{% trans "completed"%}</a> {% trans "this survey."%}{% endif %}
+            {% if request|has_answered:survey %}{% trans "You have"%} {% trans "completed"%} {% trans "essa pesquisa."%}{% endif %}
             </td></tr>
         {% endif %}
     {% endfor %}
