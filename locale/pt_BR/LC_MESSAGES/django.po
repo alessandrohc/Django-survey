@@ -8,26 +8,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-16 11:56-0300\n"
+"POT-Creation-Date: 2012-03-21 16:57-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: utf-8\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
-#: dashboard.py:28
+#: dashboard.py:25
+msgid "ModelList: Administration"
+msgstr "Administração"
+
+#: dashboard.py:33
 msgid "AppList: Applications"
 msgstr "Aplicações"
 
-#: dashboard.py:35
+#: dashboard.py:40
 msgid "Administration"
-msgstr "Administração"
-
-#: dashboard.py:44
-msgid "ModelList: Administration"
 msgstr "Administração"
 
 #: survey/forms.py:46
@@ -182,6 +182,7 @@ msgid "required"
 msgstr "obrigatório"
 
 #: survey/models.py:175 survey/models.py:244
+#: survey/templates/survey/survey_edit.html:14
 msgid "order"
 msgstr "ordem"
 
@@ -237,7 +238,8 @@ msgstr "texto da resposta"
 msgid "Interview unique identifier"
 msgstr "Indentificador único da entrevista"
 
-#: survey/models.py:288
+#: survey/models.py:288 survey/templates/survey/answers_list.html:30
+#: survey/templates/survey/answers_list.html:44
 msgid "Answer"
 msgstr "Resposta"
 
@@ -245,60 +247,61 @@ msgstr "Resposta"
 msgid "Answers"
 msgstr "Respostas"
 
-#: survey/views.py:66
+#: survey/views.py:65
 msgid "Thank You"
 msgstr "Muito obrigado"
 
-#: survey/views.py:97
+#: survey/views.py:94
 msgid "Cookies must be enabled."
 msgstr "Cookies precisam estar ativados"
 
-#: survey/views.py:170
+#: survey/views.py:167
 msgid "Add a survey"
 msgstr "Adicione uma nova pesquisa"
 
-#: survey/views.py:196
+#: survey/views.py:193
 #, python-format
 msgid "Update '%s'"
 msgstr "Atualize '%s'"
 
-#: survey/views.py:217
+#: survey/views.py:214
 msgid "Delete survey"
 msgstr "Deletar pesquisa"
 
-#: survey/views.py:241
+#: survey/views.py:238 survey/templates/survey/survey_edit.html:30
 msgid "Add a question"
 msgstr "Adicionar uma pergunta"
 
-#: survey/views.py:272
+#: survey/views.py:269
 msgid "Update question"
 msgstr "Atualizar pergunta"
 
-#: survey/views.py:295
+#: survey/views.py:292
 msgid "Delete question"
 msgstr "Deletar pergunta"
 
-#: survey/views.py:320
+#: survey/views.py:317 survey/templates/survey/survey_edit.html:45
 msgid "Add a choice"
 msgstr "Adicionar uma opção"
 
-#: survey/views.py:348
+#: survey/views.py:345
 msgid "Update choice"
 msgstr "Atualizar uma opção"
 
-#: survey/views.py:371
+#: survey/views.py:368
 msgid "Delete choice"
 msgstr "Deletar uma opção"
 
-#: survey/views.py:389 survey/views.py:409
+#: survey/views.py:387 survey/views.py:407
+#: survey/templates/survey/survey_list.html:5
 msgid "Surveys"
 msgstr "Pesquisas"
 
-#: survey/views.py:432 survey/views.py:462
+#: survey/views.py:430 survey/views.py:460
 msgid "Insufficient Privileges."
 msgstr "Previlégios insuficientes."
 
-#: survey/views.py:436
+#: survey/views.py:434
 msgid "Results"
 msgstr "Resultados"
 
@@ -306,6 +309,184 @@ msgstr "Resultados"
 #, python-format
 msgid "The form %s has already been registered."
 msgstr "O fomulário %s já foi registrado."
+
+#: survey/templates/admin/survey/choice/edit_inline_tabular.html:14
+#: survey/templates/admin/survey/question/edit_inline_tabular.html:14
+#: survey/templates/survey/choice_confirm_delete.html:15
+#: survey/templates/survey/editable_survey_list.html:26
+#: survey/templates/survey/image_confirm_delete.html:14
+#: survey/templates/survey/question_confirm_delete.html:15
+#: survey/templates/survey/survey_confirm_delete.html:16
+#: survey/templates/survey/survey_edit.html:29
+#: survey/templates/survey/survey_edit.html:44
+#: survey/templates/survey/survey_edit.html:58
+#, fuzzy
+msgid "Delete"
+msgstr "Deletar pesquisa"
+
+#: survey/templates/survey/answers_list.html:21
+msgid "Interview"
+msgstr "Entrevista"
+
+#: survey/templates/survey/answers_list.html:30
+msgid "Vote"
+msgstr "Vote"
+
+#: survey/templates/survey/answers_list.html:38
+msgid "vote"
+msgstr "vote"
+
+#: survey/templates/survey/answers_list.html:44
+msgid "of"
+msgstr "de"
+
+#: survey/templates/survey/choice_add.html:10
+#, fuzzy
+msgid "Delete Image"
+msgstr "Deletar pesquisa"
+
+#: survey/templates/survey/choice_add.html:15
+#: survey/templates/survey/question_add.html:16
+#: survey/templates/survey/survey_add.html:19
+#: survey/templates/survey/survey_detail.html:14
+#: survey/templates/test/survey_detail.html:21
+msgid "Submit"
+msgstr "Enviar"
+
+#: survey/templates/survey/choice_confirm_delete.html:11
+msgid "Are you sure you want to delete the following choice ?"
+msgstr "Tem certeza de que deseja excluir a seguinte opção ?"
+
+#: survey/templates/survey/editable_survey_list.html:7
+#, fuzzy
+msgid "Add survey"
+msgstr "Adicione uma nova pesquisa"
+
+#: survey/templates/survey/editable_survey_list.html:10
+#: survey/templates/survey/survey_edit.html:18
+#: survey/templates/survey/survey_list.html:8
+#, fuzzy
+msgid "Survey"
+msgstr "Pesquisa"
+
+#: survey/templates/survey/editable_survey_list.html:10
+#: survey/templates/survey/survey_list.html:8
+msgid "Status"
+msgstr "Estado"
+
+#: survey/templates/survey/editable_survey_list.html:10
+#: survey/templates/survey/survey_list.html:8
+msgid "Info"
+msgstr "Info"
+
+#: survey/templates/survey/editable_survey_list.html:10
+#: survey/templates/survey/survey_edit.html:15
+#, fuzzy
+msgid "Actions"
+msgstr "Perguntas"
+
+#: survey/templates/survey/editable_survey_list.html:19
+msgid "Submission"
+msgstr "Submissão(ões)"
+
+#: survey/templates/survey/editable_survey_list.html:21
+#: survey/templates/survey/survey_list.html:28
+msgid "No Submissions."
+msgstr "Nenhuma submissão"
+
+#: survey/templates/survey/editable_survey_list.html:24
+#: survey/templates/survey/survey_list.html:31
+msgid "completed"
+msgstr "completou"
+
+#: survey/templates/survey/editable_survey_list.html:24
+#: survey/templates/survey/survey_list.html:30
+#, fuzzy
+msgid "this survey."
+msgstr "essa pesquisa."
+
+#: survey/templates/survey/editable_survey_list.html:26
+msgid "Edit"
+msgstr "Editar"
+
+#: survey/templates/survey/editable_survey_list.html:26
+msgid "Transfer"
+msgstr "Transferir"
+
+#: survey/templates/survey/editable_survey_list.html:26
+#, fuzzy
+msgid "Publish"
+msgstr "Data de publicação"
+
+#: survey/templates/survey/image_confirm_delete.html:11
+msgid "Are you sure you want to delete this image ?"
+msgstr "Tem certeza que quer apagar esta imagem ?"
+
+#: survey/templates/survey/question_confirm_delete.html:11
+msgid "Are you sure you want to delete the following question ?"
+msgstr "Tem certeza de que deseja excluir a seguinte pergunta ?"
+
+#: survey/templates/survey/survey_confirm_delete.html:11
+msgid "Are you sure you want to delete the following survey ?"
+msgstr "Tem certeza que quer apagar o seguinte pesquisa ?"
+
+#: survey/templates/survey/survey_edit.html:11
+msgid "View Online"
+msgstr "Ver Online"
+
+#: survey/templates/survey/survey_edit.html:14
+msgid "Object type"
+msgstr "Tipo de objeto"
+
+#: survey/templates/survey/survey_edit.html:14
+msgid "type"
+msgstr "Tipo"
+
+#: survey/templates/survey/survey_edit.html:15
+msgid "Object"
+msgstr "Objeto"
+
+#: survey/templates/survey/survey_edit.html:28
+#: survey/templates/survey/survey_edit.html:43
+#: survey/templates/survey/survey_edit.html:57
+#, fuzzy
+msgid "Update"
+msgstr "Atualize '%s'"
+
+#: survey/templates/survey/survey_edit.html:35
+#, fuzzy
+msgid "Question"
+msgstr "Pergunta"
+
+#: survey/templates/survey/survey_edit.html:50
+#, fuzzy
+msgid "choice"
+msgstr "Opção"
+
+#: survey/templates/survey/survey_list.html:31
+msgid "You have"
+msgstr "Você já"
+
+#: survey/templates/survey/thankyou.html:4
+msgid "Thank you for you submission!"
+msgstr "Obrigado por sua submissão!"
+
+#: templates/base.html:22
+msgid "Welcome"
+msgstr "Bem vindo: "
+
+#: templates/base.html:23
+msgid "Change password"
+msgstr "Alterar senha"
+
+#: templates/base.html:24
+msgid "Log out"
+msgstr "Sair"
+
+#: templates/main_page.html:5
+#, fuzzy
+msgid "django-survey"
+msgstr "Adicione uma nova pesquisa"
 
 #, fuzzy
 #~ msgid "Text long"
@@ -370,18 +551,6 @@ msgstr "O fomulário %s já foi registrado."
 
 #~ msgid "question type"
 #~ msgstr "tipo de pergunta"
-
-#, fuzzy
-#~ msgid "Survey"
-#~ msgstr "Pesquisa"
-
-#, fuzzy
-#~ msgid "Question"
-#~ msgstr "Pergunta"
-
-#, fuzzy
-#~ msgid "Questions"
-#~ msgstr "Perguntas"
 
 #~ msgid "Radio Image List"
 #~ msgstr "Lista Imagem Radio"

@@ -222,7 +222,7 @@ msgstr ""
 
 #: views.py:450 templates/survey/editable_survey_list.html:19
 msgid "Submission"
-msgstr ""
+msgstr "Submissão"
 
 #: templates/admin/survey/choice/edit_inline_tabular.html:14
 #: templates/admin/survey/question/edit_inline_tabular.html:14
