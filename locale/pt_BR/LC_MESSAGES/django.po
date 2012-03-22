@@ -387,7 +387,7 @@ msgstr "Perguntas"
 
 #: survey/templates/survey/editable_survey_list.html:19
 msgid "Submission"
-msgstr "Submissão(ões)"
+msgstr "pessoa(s) responde(u/ram) está pesquisa"
 
 #: survey/templates/survey/editable_survey_list.html:21
 #: survey/templates/survey/survey_list.html:28
