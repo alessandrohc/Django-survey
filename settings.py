@@ -12,7 +12,7 @@ ADMINS = (
 
 VERSION = "1.0 Beta 1"
 
-GRAPPELLI_ADMIN_TITLE = "Django Survey"
+GRAPPELLI_ADMIN_TITLE = "Django Pesquisa"
 
 MANAGERS = ADMINS
 
@@ -36,12 +36,13 @@ TIME_ZONE = 'America/Sao_Paulo'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'pt-BR'
+LANGUAGE_CODE = 'pt-br'
 
-#LANGUAGES = (
-#  ('en', 'English'),
-#  ('fr', 'Francais'),
-#)
+LANGUAGES = (
+    ('pt-br', 'Portuguese'),
+    ('en', 'English'),
+    ('fr', 'Francais'),
+)
 
 SITE_ID = 1
 
@@ -108,6 +109,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
     #'django.contrib.messages.middleware.MessageMiddleware',
 )
 
