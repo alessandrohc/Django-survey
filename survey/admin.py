@@ -32,7 +32,7 @@ class QuestionOptions(admin.ModelAdmin):
         'choice_num_min', 
         'choice_num_max', 
         'qstyle', 
-        'order'
+        ##'order'
     )
     search_fields = ('text',)
     
