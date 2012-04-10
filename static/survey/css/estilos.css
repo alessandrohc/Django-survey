@@ -1,0 +1,58 @@
+﻿@charset "UTF-8";
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,a,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,button,input,select,textarea,caption,tbody,tfoot,thead,tr,th,td {margin:0; padding:0; border:0; outline:0; background:transparent; vertical-align:baseline}
+font {font-family:inherit; font-size:inherit; font-weight:inherit; color:inherit}
+table {border-collapse:collapse; border-spacing:0}
+img {-ms-interpolation-mode:bicubic}
+hr {display:block; height:1px; border:0; margin:8px 0 1px; padding:0; border-top:1px solid #E0E0E0}
+h1,h2,h3,h4,h5,h6,strong,th,b,dt {font-weight:bold}
+u {text-decoration:none}
+li {list-style-type:none}
+:focus, a:hover, a:active {outline:none !important}
+
+/*#content {border:1px solid #CCC; width:560px; height:290px; overflow-y:auto}*/
+
+body {background:#FFF; font-family:Arial,sans-serif; font-size:12px; line-height:1.2}
+
+a, a:active, a:visited {color:#C4161C; text-decoration:none}
+a:hover {color:#C4161C; text-decoration:underline}
+
+#content {position:relative}
+
+#content h1 {color:#C4161C; font-size:16px; font-weight:bold; margin:0 20px 20px 0; text-align:left; text-transform:uppercase; word-spacing:1px}
+#content h2 {font-size:14px}
+#content p {margin:0 5px 10px 0; text-align:justify}
+
+#content .module table {border:1px solid #C4161C; width:530px !important}
+#content .module table th {padding:4px; font-size:13px}
+#content .module td {border:1px solid #C4161C; padding:4px}
+#content .module table th:nth-child(odd) {background:#C5161D; color:#FFF}
+#content .module table th:nth-child(even) {background:#F3D9D9; color:#C4161C; border-right:1px solid #C4161C}
+.ie9 .module #content table th:nth-child(even) {border-left:1px solid #C4161C}
+body:nth-of-type(1) #content table th:nth-child(even) {border-left:1px solid #C4161C}
+
+.focus-input {width:400px}
+.focus-input {background:#F9ECEC; padding:10px 14px; margin-bottom:20px; border-radius:6px; box-shadow:2px 2px 4px rgba(40,10,10, 0.4)}
+.focus-input div {padding:4px 0 0 0; overflow:hidden}
+.ie7 .focus-input div {margin:4px 0 0 0}
+.focus-input label {display:inline-block; margin:0; position:relative; *display:inline; *zoom:1}
+.focus-input input[type=text], .focus-input input[type=password], .focus-input select, .focus-input textarea {border:1px solid #E0888A; background:#FFF; font-family:sans-serif; font-size:12px; line-height:14px; color:#555; padding-left:2px; height:20px; float:right; border-radius:3px; width:130px; *margin-top:-16px}
+.focus-input input[type=text], input[type=password] {height:18px; width:126px}
+.focus-input textarea {width:98%; height:46px; padding:2px; overflow-y:auto; float:none; margin:8px 0}
+.focus-input ul {background:#F4E2E2; padding:4px 6px 6px 6px; margin-top:8px; line-height:17px !important; color:#8E1C07; border:1px solid #D0B4B4; border-radius:4px; border-bottom-color:#FFF; border-right-color:#FFF}
+.focus-input input[type=radio], .focus-input input[type=checkbox] {vertical-align:-1px; margin-right:4px}
+.focus-input input[type=checkbox] {vertical-align:middle}
+.focus-input input[type=submit] {background:#C4161C; color:#FFF; font-family:sans-serif; text-transform:lowercase; font-weight:bold; padding:3px 8px; font-variant:small-caps; margin:7px 0 8px; border-radius:4px; cursor:pointer; text-shadow:1px 1px rgba(0,0,0,0.3); border-radius:6px; box-shadow:1px 1px 1px rgba(30,5,5, 0.5); *font-variant:none; *text-transform:none}
+
+.required:before {content:"*"; color:red; font-weight:bold; margin-right:1px}
+
+.barColor {background-color:#C5161D; padding:0 !important; height:16px}
+
+.question {width:520px}
+.question-results div {line-height:18px !important}
+.question h2 {margin-bottom:4px; cursor:pointer}
+h1 i, h2 i {color:#961C05; font-style:normal}
+.question .bar {margin-left:8px}
+
+caption {line-height:16px; font-weight:bold; color:#C4161C; font-size:13px; text-align:left; margin:3px 0 0 0}
+
+.answer {color:#C4161C; font-weight:bold}
