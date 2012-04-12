@@ -98,7 +98,7 @@ class Survey(models.Model):
     def status(self):
         if not self.visible: return _('private')
         if self.open: return _('open')
-        if datetime.now() < self.opens:
+        if datetime.datetime.now() < self.opens:
             return unicode(_('opens ')) + datefilter(self.opens)
         return _('closed')
 
