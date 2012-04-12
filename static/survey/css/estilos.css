@@ -17,6 +17,7 @@ a, a:active, a:visited {color:#C4161C; text-decoration:none}
 a:hover {color:#C4161C; text-decoration:underline}
 
 #content {position:relative}
+#info_div {text-align: center}
 
 #content h1 {color:#C4161C; font-size:16px; font-weight:bold; margin:0 20px 20px 0; text-align:left; text-transform:uppercase; word-spacing:1px}
 #content h2 {font-size:14px}
