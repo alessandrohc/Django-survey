@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from django.conf.urls.defaults import patterns, url, include
 from django.contrib import admin
 from django.contrib.auth.views import login, logout, password_change
@@ -7,6 +8,11 @@ from django.conf import settings
 # survey imports
 from survey.urls import redirect_start
 import survey.views
+
+# usa a definição de custom admin para anular globalmente admin site.
+# modificações efetuadas em custom admin, afeta todo o projeto.
+from survey.admin import CustomAdminSite
+admin.site = CustomAdminSite()
 
 admin.autodiscover()
 
