@@ -18,7 +18,7 @@
 </style>
 {% endblock %}
 {% block content %}
-<h1>{{ title }} <i>({{ survey.interview_count }} {% trans "Interview" %}{{ survey.interview_count|pluralize:"s" }})</i></h1>
+<h1>{{ title }}<i>({{ survey.interview_count }} {% trans "Entrevista" %}{{ survey.interview_count|pluralize:"s" }})</i></h1>
 <br/>
 {% for question in survey.questions.all %}
 <div class='question'>
@@ -27,7 +27,10 @@
         onclick='var foo=document.getElementById("results{{forloop.counter}}");
                  if (foo.style.display=="none") { foo.style.display="block"; }
                  else { foo.style.display="none"; }'
-    >{{ question.text }} <i>({{ question.answer_count }} {% if question.choices.count %}{% trans "Voto" %}{% else %}{% trans "Answer" %}{% endif %}{{ question.answer_count|pluralize:"s" }})</i></h2>
+    >{{ question.text }} 
+    
+    <i>({{ question.answer_count }} {% if question.choices.count %}{% trans "Voto" %}{% else %}{% trans "Resposta" %}{% endif %}{{ question.answer_count|pluralize:"s" }})</i></h2>
+    
     <div id='results{{forloop.counter}}' class='question-results'>
 {% if question.choices.count %}
     {% for choice in question.choices.iterator %}
@@ -41,7 +44,7 @@
     {% endfor %}
 {% else %}
     {% for answer in question.answers.all %}
-        <div>{% if view_submissions %}<a href='{% url answers-detail survey_id=survey.id, key=answer.session_key %}'>{% endif %}{% trans "Answer" %} {{ forloop.counter }}{% if view_submissions %}</a>{% endif %} {% trans "of" %} {{ question.answer_count }}</div>
+        <div>{% if view_submissions %}<a href='{% url answers-detail survey_id=survey.id, key=answer.session_key %}'>{% endif %}{% trans "Resposta" %} {{ forloop.counter }}{% if view_submissions %}</a>{% endif %} {% trans "of" %} {{ question.answer_count }}</div>
         <div class="answer">{{ answer.text }}</div>
         <hr/>
     {% endfor %}
