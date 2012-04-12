@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 from survey.models import Answer, Choice, Question, Survey
 from django.contrib import admin
+from django.contrib.admin.sites import AdminSite
+
+########################################################################
+class CustomAdminSite(AdminSite):
+    """"""
+    password_change_template = "password_change_form.html"
+    #----------------------------------------------------------------------
 
 class ChoiceInline(admin.TabularInline):
     """
