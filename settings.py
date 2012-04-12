@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Django settings for {{ project_name }} project.
 import os
 
@@ -12,7 +14,7 @@ ADMINS = (
 
 VERSION = "1.0 Beta 1"
 
-GRAPPELLI_ADMIN_TITLE = "Django Pesquisa"
+GRAPPELLI_ADMIN_TITLE = u"Pesquisas"
 
 MANAGERS = ADMINS
 
