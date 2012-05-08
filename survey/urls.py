@@ -50,7 +50,7 @@ urlpatterns = patterns('',
     url(r'^choice/update/(?P<question_id>\d+)/(?P<choice_id>\d+)/$', choice_update, name='choice-update'),
     url(r'^choice/delete/(?P<survey_slug>[-\w]+)/(?P<choice_id>\d+)/$', choice_delete, name='choice-delete'),
     
-    url(r'^admin/$', ajax),
+    url(r'^admin/$', redirect_to, {'url':'../../admin'}),
     
     url(r'^api/$', 'survey.api.base'),
     url(r'^api/surveys$', 'survey.api.surveys'),
