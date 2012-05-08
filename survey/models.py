@@ -146,8 +146,8 @@ class Survey(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('survey-detail', (), {'survey_slug': self.slug })
-
+        return ('survey-detail', (), {'survey_id': self.id})
+    
     def save(self):
         res = super(Survey, self).save()
         cache.delete(self._cache_name)
