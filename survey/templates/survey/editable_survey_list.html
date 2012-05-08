@@ -10,7 +10,7 @@
     <thead><th>{% trans 'Survey' %}</th><th>{% trans "Status"%}</th><th>{% trans "Info"%}</th><th>{% trans "Actions"%}</th></thead>
     {% for survey in object_list %}
     <tr class="{% cycle row1,row2 %}">
-        <td><a href='{% url survey-detail survey_slug=survey.slug %}'>{{ survey.title }}</a>
+        <td><a href='{% url survey-detail survey_id=survey.id %}'>{{ survey.title }}</a>
         </td>
         <td>{{ survey.status }}</td>
         <td>
