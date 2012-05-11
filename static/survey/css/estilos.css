@@ -17,18 +17,23 @@ a, a:active, a:visited {color:#C4161C; text-decoration:none}
 a:hover {color:#C4161C; text-decoration:underline}
 
 #content {position:relative}
-#info_div {text-align: center}
+#info_div {text-align: left}
 
 #content h1 {color:#C4161C; font-size:16px; font-weight:bold; margin:0 20px 20px 0; text-align:left; text-transform:uppercase; word-spacing:1px}
 #content h2 {font-size:14px}
 #content p {margin:0 5px 10px 0; text-align:justify}
 
 #content .module table {border:1px solid #C4161C; width:530px !important}
-#content .module table th {padding:4px; font-size:13px}
-#content .module td {border:1px solid #C4161C; padding:4px}
+#content .module table th {padding:4px; font-size:12px}
+
+#content .module td {border:2px solid #C4161C; padding:5px}
 #content .module table th:nth-child(odd) {background:#C5161D; color:#FFF}
-#content .module table th:nth-child(even) {background:#F3D9D9; color:#C4161C; border-right:1px solid #C4161C}
+#content .module table th:nth-child(even) {
+	background:#C00000 ; color:#FFF; 
+	border-right:2px solid #C4161C;
+}
 .ie9 .module #content table th:nth-child(even) {border-left:1px solid #C4161C}
+
 body:nth-of-type(1) #content table th:nth-child(even) {border-left:1px solid #C4161C}
 
 .focus-input {width:400px}
@@ -56,4 +61,5 @@ h1 i, h2 i {color:#961C05; font-style:normal}
 
 caption {line-height:16px; font-weight:bold; color:#C4161C; font-size:13px; text-align:left; margin:3px 0 0 0}
 
-.answer {color:#C4161C; font-weight:bold}
+.answer {color:#C4161C; font-weight:bold;}
+#answer_group p {display:inline}
