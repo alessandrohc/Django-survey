@@ -26,6 +26,12 @@ msgstr "Administração"
 msgid "AppList: Applications"
 msgstr "Aplicações"
 
+msgid "Show edition"
+msgstr "Mostrar edição"
+
+msgid "Show results"
+msgstr "Mostrar resultados"
+
 #: dashboard.py:40
 msgid "Administration"
 msgstr "Administração"
@@ -47,6 +53,9 @@ msgstr "Por favor entre %s ou menos número de dígitos."
 #: survey/forms.py:191
 msgid "Invalid Choice."
 msgstr "Escolha inválida."
+
+msgid "Page not found."
+msgstr "Página não encontrada."
 
 #: survey/forms.py:266
 msgid "Date:"
@@ -119,7 +128,7 @@ msgstr "Ativo"
 
 #: survey/models.py:45
 msgid "show results at end of the survey"
-msgstr "Mostrar resultados no final da pesquisa"
+msgstr "Tornar público, os resultados"
 
 #: survey/models.py:46
 msgid "Somente usuários autenticados"
@@ -469,7 +478,7 @@ msgstr "Você já"
 
 #: survey/templates/survey/thankyou.html:4
 msgid "Thank you for you submission!"
-msgstr "Obrigado por sua submissão!"
+msgstr "Obrigado por participar de nossa pesquisa!"
 
 #: templates/base.html:22
 msgid "Welcome"
