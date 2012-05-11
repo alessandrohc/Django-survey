@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
 import os
 
@@ -22,93 +23,91 @@ from survey.forms import forms_for_survey, SurveyForm, QuestionForm, ChoiceForm
 from survey.models import Survey, Answer, Question, Choice
 from django.contrib.auth.decorators import login_required
 
-def _survey_redirect(request, survey,
-                    group_slug=None, group_slug_field=None, group_qs=None,
-                    template_name = 'survey/thankyou.html',
-                    extra_context=None,
-                    *args, **kw):
+def is_user_auth(user):
+    """ inidica se o usuário tem permissões necessárias para acessar áreas restritas """
+    usergroups = [group.name.lower() for group in user.groups.all()]
+    useraccount = user.is_authenticated() and user.is_active
+    userpass =  useraccount and (("editores" in usergroups) or ("editor" in usergroups) or user.is_superuser)
+    return userpass
+
+def get_survey(user, survey_id):
+    """ retorna a pesquisa, com base na visibilidade e no tipo de usuário """
+    try:
+        flag, survey = True, Survey.objects.filter(visible=True, id=survey_id)[0]
+    except IndexError:
+        try:
+            flag, survey = True, Survey.objects.filter(visible=False, id=survey_id)[0]
+            if not is_user_auth( user ):
+                flag, survey = False, "<h6>Pesquisa \"%s\" encontra-se desativada.</h6>"%survey.title
+        except IndexError, e:
+            flag, survey = None, ("<h6>"+"Http404 - Página não encontrada."+"</h6>")
+    return (flag, survey)
+
+def _survey_redirect(request, survey, group_slug=None, group_slug_field=None, group_qs=None,
+                    template_name = 'survey/thankyou.html', extra_context=None, *args, **kw):
     """
-    Conditionally redirect to the appropriate page;
-    if there is a "next" value in the GET URL parameter,
-    go to the URL specified under Next.
-
-    If there is no "next" URL specified, then go to
-    the survey results page...but only if it is viewable
-    by the user.
-
-    Otherwise, only direct the user to a page showing
-    their own survey answers...assuming they have answered
-    any questions.
-
+    Conditionally redirect to the appropriate page; if there is a "next" value in the GET URL parameter, go to the URL specified under Next.
+    If there is no "next" URL specified, then go to the survey results page...but only if it is viewable by the user.
     If all else fails, go to the Thank You page.
     """
     if ('next' in request.REQUEST and
         request.REQUEST['next'].startswith('http:') and
         request.REQUEST['next'] != request.path):
         return HttpResponseRedirect(request.REQUEST['next'])
-    if survey.answers_viewable_by(request.user):
-        return HttpResponseRedirect(reverse('survey-results', None, (),
-                                                {'survey_id': survey.id}))
-
-    # For this survey, have they answered any questions?
-    if (hasattr(request, 'session') and Answer.objects.filter(
-            session_key=request.session.session_key.lower(),
-            question__survey__visible=True,
-            question__survey__id=survey.id).count()):
-        return HttpResponseRedirect(
-            reverse('answers-detail', None, (),
-                    {'survey_id': survey.id,
-                     'key': request.session.session_key.lower()}))
-
+    
+    if survey.answers_viewable_by(request.user) or is_user_auth(request.user):
+        return HttpResponseRedirect(reverse('survey-results', None, (), {'survey_id': survey.id}))
+    
     # go to thank you page
-    return render_to_response(template_name,
-                              {'survey': survey, 'title': _('Thank You')},
+    return render_to_response(template_name, {'survey': survey, 'title': _('Thank You')},
                               context_instance=RequestContext(request))
 
 def survey_detail(request, survey_id,
                group_slug=None, group_slug_field=None, group_qs=None,
                template_name = 'survey/survey_detail.html',
-               extra_context=None,
-               allow_edit_existing_answers=False,
+               extra_context=None, allow_edit_existing_answers=False,
                *args, **kw):
-    """ """
-    survey = get_object_or_404(Survey.objects.filter(visible=True), id=survey_id)
-    if survey.closed:
+    
+    flag, survey = get_survey(request.user, survey_id)
+    
+    # survey, nesse caso, é uma mensagem de falha.
+    if not flag: return HttpResponse( survey)
+    
+    if survey.closed and not is_user_auth( request.user ):
         if survey.answers_viewable_by(request.user):
-            return HttpResponseRedirect(reverse('survey-results', None, (),
-                                                {'survey_id': survey_id}))
+            return HttpResponseRedirect(reverse('survey-results', None, (), {'survey_id': survey_id}))
         raise Http404 #(_('Page not found.')) # unicode + exceptions = bad
+    
     # if user has a session or is authenticated and have answered
     # some questions and the survey does not accept multiple answers,
     # go ahead and redirect to the answers, or a thank you
-    if not survey.allows_multiple_interviews and not allow_edit_existing_answers:
+    if not survey.allows_multiple_interviews and not allow_edit_existing_answers and not is_user_auth( request.user ):
         if ((hasattr(request, 'session') and survey.has_answers_from(request.session.session_key)) or
         (request.user.is_authenticated() and survey.has_answers_from_user(request.user))):
-            return _survey_redirect(request, survey,group_slug=group_slug)
-
+            return _survey_redirect(request, survey, group_slug=group_slug)
+        
     # if the survey is restricted to authentified user redirect
     # annonymous user to the login page
     if survey.restricted and request.user.is_anonymous():
         return HttpResponseRedirect(settings.LOGIN_URL+"?next=%s" % request.path)
+    
     if request.POST and not hasattr(request, 'session'):
         return HttpResponse(unicode(_('Cookies must be enabled.')), status=403)
-
+    
     if hasattr(request, 'session'):
         skey = 'survey_%d' % survey.id
-        request.session[skey] = (request.session.get(skey, False) or
-                                 request.method == 'POST')
+        request.session[skey] = (request.session.get(skey, False) or request.method == 'POST')
         request.session.modified = True ## enforce the cookie save.
+        
     survey.forms = forms_for_survey(survey, request, allow_edit_existing_answers)
+    
     if (request.POST and all(form.is_valid() for form in survey.forms)):
-        for form in survey.forms:
-            form.save()
-        return _survey_redirect(request, survey,group_slug=group_slug)
-    # Redirect either to 'survey.template_name' if this attribute is set or
-    # to the default template
+        for form in survey.forms: form.save()
+        return _survey_redirect(request, survey, group_slug=group_slug)
+    
+    # Redirect either to 'survey.template_name' if this attribute is set or to the default template
     return render_to_response(survey.template_name or template_name,
-                              {'survey': survey,
-                               'title': survey.title,
-                               'group_slug': group_slug},
+                              {'survey': survey, 'title': survey.title, 'group_slug': group_slug},
                               context_instance=RequestContext(request))
 
 # TODO: ajaxify this page (jquery) : add a date picker, ...
@@ -118,15 +117,14 @@ def survey_detail(request, survey_id,
 def survey_edit(request,survey_slug,
                group_slug=None, group_slug_field=None, group_qs=None,
                template_name = "survey/survey_edit.html",
-               extra_context=None,
-               *args, **kw):
+               extra_context=None, *args, **kw):
+    
     if not request.user.is_staff:
         raise Http404()
     
     survey = get_object_or_404(Survey, slug=survey_slug)
     return render_to_response(template_name,
-                              {'survey': survey,
-                               'group_slug': group_slug},
+                              {'survey': survey, 'group_slug': group_slug},
                               context_instance=RequestContext(request))
 
 # TODO: Refactor the object add to avoid the code duplication.
@@ -409,32 +407,20 @@ def editable_survey_list(request,
                             }
             })
 
-
-def answers_list(request, survey_id,
-                 group_slug=None, group_slug_field=None, group_qs=None,
+def answers_list(request, survey_id, group_slug=None, group_slug_field=None, group_qs=None,
                  template_name = 'survey/answers_list.html',
-                 extra_context=None,
-                 *args, **kw):
-    """
-    Shows a page showing survey results for an entire survey.
-    """
-    survey = get_object_or_404(Survey.objects.filter(visible=True), id=survey_id)
-    # if the user lacks permissions, show an "Insufficient Permissions page"
-    if not survey.answers_viewable_by(request.user):
-        if (hasattr(request, 'session') and
-            survey.has_answers_from(request.session.session_key)):
-            return HttpResponseRedirect(
-                reverse('answers-detail', None, (),
-                        {'survey_id': survey.id,
-                         'key': request.session.session_key.lower()}))
-        return HttpResponse(unicode(_('Insufficient Privileges.')), status=403)
-    return render_to_response(template_name,
-        { 'survey': survey,
-          'view_submissions': request.user.has_perm('survey.view_submissions'),
-          'title': survey.title + u' - ' + unicode(_('Results'))},
+                 extra_context=None, *args, **kw):
+    """ Shows a page showing survey results for an entire survey. """
+    
+    flag, survey = get_survey(request.user, survey_id)
+    
+    # survey nesse, caso, é uma mensagem de falha.
+    if not flag: return HttpResponse( survey)
+    
+    return render_to_response( template_name,
+        {'survey': survey, 'view_submissions': request.user.has_perm('survey.view_submissions'),
+         'title': survey.title + u' - ' + unicode(_('Results'))},
         context_instance=RequestContext(request))
-
-
 
 def answers_detail(request, survey_id, key,
                    group_slug=None, group_slug_field=None, group_qs=None,
@@ -443,29 +429,26 @@ def answers_detail(request, survey_id, key,
                    *args, **kw):
     """
     Shows a page with survey results for a single person.
-
     If the user lacks permissions, show an "Insufficient Permissions page".
     """
     answers = Answer.objects.filter(session_key=key.lower(),
         question__survey__visible=True, question__survey__id=survey_id)
+
     if not answers.count(): raise Http404
+    
     survey = answers[0].question.survey
-
-    mysubmission = (hasattr(request, 'session') and
-         request.session.session_key.lower() == key.lower())
-
-    if (not mysubmission and
-        (not request.user.has_perm('survey.view_submissions') or
+    mysubmission = (hasattr(request, 'session') and request.session.session_key.lower() == key.lower())
+    
+    if (not mysubmission and (not request.user.has_perm('survey.view_submissions') or
          not survey.answers_viewable_by(request.user))):
         return HttpResponse(unicode(_('Insufficient Privileges.')), status=403)
+    
     return render_to_response(template_name,
-        {'survey': survey, 'submission': answers,
-         'title': survey.title},
+        {'survey': survey, 'submission': answers, 'title': survey.title},
         context_instance=RequestContext(request))
 
 @login_required
 def ajax(request, template_name='survey/ajax.html'):
-    return render_to_response(template_name, {
-    }, context_instance=RequestContext(request))
+    return render_to_response(template_name, {}, context_instance=RequestContext(request))
     
     
