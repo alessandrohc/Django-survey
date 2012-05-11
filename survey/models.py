@@ -21,14 +21,15 @@ QTYPE_CHOICES = (
     ('R', _(u'Botões de radio')),
     ('C', _(u'Botões de caixa de marcação'))
 )
+##########################################################################
 class SurveyManager(models.Manager):
 
     def surveys_for(self, recipient):
         recipient_type = ContentType.objects.get_for_model(recipient)
         return Survey.objects.filter(visible=True,recipient_type=recipient_type, recipient_id=recipient.id)
 
+##########################################################################
 class Survey(models.Model):
-    
     title = models.CharField(_('title'), max_length=255, unique=True)
     slug  = models.SlugField(_('slug'), max_length=255, blank=True)
     
@@ -43,10 +44,14 @@ class Survey(models.Model):
     # Define the behavior of the survey
     visible = models.BooleanField(_('active'))
     public  = models.BooleanField(_('show results at end of the survey'))
-    restricted = models.BooleanField(verbose_name=_(u"Somente usuários autenticados")
-                                     ,blank=True,default=False)
-    allows_multiple_interviews = models.BooleanField(verbose_name=_("allows multiple interviews")
-                                                     ,blank=True,default=True)
+    
+    # Usado para restringir pesquisas a usuários com login e senha no sistema
+    restricted = models.BooleanField(
+        verbose_name=_(u"Somente usuários autenticados"), blank=True, default=False)
+    
+    allows_multiple_interviews = models.BooleanField(
+        verbose_name=_("allows multiple interviews"), blank=True, default=False)
+    
     template_name = models.CharField(_('template name'), 
         max_length=150, null=True, blank=True,
         help_text=_("This field is used to define a custom template (Example: 'dj_survey/template/my_add_interview_forms.html')."))
@@ -143,7 +148,6 @@ class Survey(models.Model):
     def __unicode__(self):
         return u' - '.join([self.slug, self.title])
 
-
     @models.permalink
     def get_absolute_url(self):
         return ('survey-detail', (), {'survey_id': self.id})
@@ -162,27 +166,24 @@ class Survey(models.Model):
     class Meta:
         verbose_name        = _("Pesquisa")
         verbose_name_plural = _("Pesquisas")
-    
+
+##########################################################################
 class Question(models.Model):
-    survey = models.ForeignKey(Survey, related_name='questions',
-                                 verbose_name=_('survey'))
-    text     = models.TextField(_('question text'))
-    qtype = models.CharField(_('formato de resposta'), max_length=2,
-                                choices=QTYPE_CHOICES,
-                                default='T')
+    survey = models.ForeignKey(Survey, related_name='questions', verbose_name=_('survey'))
+    
+    text = models.TextField(_('question text'))
+    
+    qtype = models.CharField(_('formato de resposta'), max_length=2, choices=QTYPE_CHOICES, default='T')
     required = models.BooleanField(_('required'), default=True)
     
-    order = models.IntegerField(verbose_name = _("order"),
-                                null=True, blank=True)
+    order = models.IntegerField(verbose_name = _("order"), null=True, blank=True)
     
     # Define if the user must select at least 'choice_num_min' number of
     # choices and at most 'choice_num_max'
-    choice_num_min = models.IntegerField(_("minimum number of choices"),
-                                         null=True, blank=True,)
-    choice_num_max = models.IntegerField(_("maximum number of choices"),
-                                         null=True, blank=True,)
+    choice_num_min = models.IntegerField(_("minimum number of choices"), null=True, blank=True,)
+    choice_num_max = models.IntegerField(_("maximum number of choices"), null=True, blank=True,)
+    
     # TODO: Modify the forms to respect the style defined by this attr (html,css)
-
     qstyle = models.TextField(_("Html Style"),null=True, blank=True)
     ## model validation for requiring choices.
 
@@ -218,23 +219,28 @@ class Question(models.Model):
         ordering = ('survey', 'order')
         verbose_name        = _("Pergunta")
         verbose_name_plural = _("Perguntas")
-
+        
     class Admin:
         list_select_related = True
         list_filter = ('survey', 'qtype')
         list_display_links = ('text',)
         list_display = ('survey', 'text', 'qtype', 'required')
         search_fields = ('text',)
-
+        
+    @models.permalink
+    def get_absolute_url(self):
+        return ('survey-detail', (), {'survey_id': self.survey.id})
+    
     @models.permalink
     def get_update_url(self):
-        return ('question-update', (), {'survey_slug': self.survey.slug,'question_id' :self.id  })
+        return ('question-update', (), {'survey_id': self.survey.id, 'question_id': self.id} )
 
     # TODO: add this a fallback to this optimisation with django ORM.
     @property
     def choice_count(self):
         return self.choices.count()
-
+    
+##########################################################################
 class Choice(models.Model):
     ## validate question is of proper qtype
     question = models.ForeignKey(Question, related_name='choices',
@@ -252,8 +258,7 @@ class Choice(models.Model):
     def count(self):
         if hasattr(self, '_count'):
             return self._count
-        self._count = Answer.objects.filter(question=self.question_id,
-                                            text=self.text).count()
+        self._count = Answer.objects.filter(question=self.question_id, text=self.text).count()
         return self._count
 
     def __unicode__(self):
@@ -265,25 +270,27 @@ class Choice(models.Model):
         ordering = ('question', 'order')
         verbose_name        = _("Choice")
         verbose_name_plural = _("Choices")
-
+        
+##########################################################################
 class Answer(models.Model):
     user = models.ForeignKey(User, related_name='answers',
                              verbose_name=_('user'), editable=False,
                              blank=True,null=True)
     question = models.ForeignKey(Question, related_name='answers',
-                                 verbose_name=_('question'),
-                                 editable=False)
+                                 verbose_name=_('question'), editable=False)
     ## sessions expire, survey results do not, so keep the key.
     session_key = models.CharField(_('session key'), max_length=40)
     text = models.TextField(_('answer text'))
     submission_date = models.DateTimeField(auto_now=True)
     # UUID is used to calculate the number of interviews
     interview_uuid = models.CharField(_("Interview unique identifier"),max_length=36)
-
-
+    
     class Meta:
         # unique_together = (('question', 'session_key'),)
-        permissions = (("view_answers",     "Can view survey answers"),
+        permissions = (("view_answers", "Can view survey answers"),
                        ("view_submissions", "Can view survey submissions"))
         verbose_name        = _("Answer")
         verbose_name_plural = _("Answers")
+    
+    def __unicode__(self):
+        return self.text
