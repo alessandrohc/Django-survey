@@ -21,6 +21,8 @@ class QuestionOptions(admin.ModelAdmin):
     """
     A newforms-admin options class for the ``Question`` model.
     """
+    change_form_template = 'admin/survey/survey/change_form.html'
+    
     class Media:
         js = ("/static/js/control_hide.js",)
         
@@ -60,16 +62,16 @@ class SurveyOptions(admin.ModelAdmin):
     """
     A newforms-admin options class for the ``Survey`` model.
     """
+    change_form_template = 'admin/survey/survey/change_form.html'
     fields = (
         'title',
         'description',
         'opens',
         'closes',
         'visible',
-        'public',
-        'restricted'
+        'public'
     )
-
+    
 class AnswerOptions(admin.ModelAdmin):
     """
     A newforms-admin options class for the ``Answer`` model.
